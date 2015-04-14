@@ -33,7 +33,7 @@ public class HomeExchangeActivity extends BaseActivity {
 		// Progress
 		pd = new ProgressDialog(HomeExchangeActivity.this);
 		pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-		pd.setMessage("��������У����Ժ�");
+		pd.setMessage("数据载入中，请稍候！");
 		// Show/Hide message
 		handler = new Handler() {
 			public void handleMessage(Message msg) {// ����һ��Handler�����ڴ��������߳���UI��ͨѶ
@@ -85,9 +85,9 @@ public class HomeExchangeActivity extends BaseActivity {
 
 	public void ConfirmExit() {// �˳�ȷ��
 		AlertDialog.Builder ad = new AlertDialog.Builder(HomeExchangeActivity.this);
-		ad.setTitle("�˳�");
-		ad.setMessage("�Ƿ񷵻ص���ҳ?");
-		ad.setPositiveButton("��", new DialogInterface.OnClickListener() {// �˳���ť
+		ad.setTitle("退出");
+		ad.setMessage("是否返回到主页?");
+		ad.setPositiveButton("是", new DialogInterface.OnClickListener() {// �˳���ť
 					@Override
 					public void onClick(DialogInterface dialog, int i) {
 						// TODO Auto-generated method stub
@@ -95,7 +95,7 @@ public class HomeExchangeActivity extends BaseActivity {
 
 					}
 				});
-		ad.setNegativeButton("��", new DialogInterface.OnClickListener() {
+		ad.setNegativeButton("否", new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int i) {
 				// ���˳�����ִ���κβ���
@@ -105,12 +105,8 @@ public class HomeExchangeActivity extends BaseActivity {
 	}
 
 	public void loadurl(final WebView view, final String url) {
-		new Thread() {
-			public void run() {
 				handler.sendEmptyMessage(0);
 				view.loadUrl(url);// ������ҳ
-			}
-		}.start();
 	}
 
 }
