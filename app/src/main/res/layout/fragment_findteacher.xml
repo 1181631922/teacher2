@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="#DCDCDC"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/upmost"
@@ -12,12 +12,12 @@
         android:layout_alignParentTop="true"
         android:layout_gravity="center_horizontal"
         android:background="#4169E1"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal" >
+            android:gravity="center_horizontal">
 
             <TextView
                 android:id="@+id/title"
@@ -37,26 +37,31 @@
         android:id="@+id/test"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <Button
             android:layout_width="fill_parent"
             android:layout_height="40dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:text="查找"
-             />
+            android:text="查找" />
 
         <FrameLayout
             android:id="@+id/llParent"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
-            <ListView
-                android:id="@+id/lvShow"
+            <cn.edu.sjzc.teacher.view.RefreshableView
+                android:id="@+id/events_refreshable"
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent" />
+                android:layout_height="fill_parent">
+
+                <ListView
+                    android:id="@+id/lvShow"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent" />
+            </cn.edu.sjzc.teacher.view.RefreshableView>
 
             <TextView
                 android:id="@+id/tvLetter"
@@ -69,15 +74,13 @@
                 android:minWidth="70dip"
                 android:padding="10dip"
                 android:textColor="#99FFFFFF"
-                android:textSize="50sp" >
-            </TextView>
+                android:textSize="50sp"></TextView>
 
             <cn.edu.sjzc.teacher.view.StudentSideBarView
                 android:id="@+id/myView"
                 android:layout_width="30dip"
                 android:layout_height="fill_parent"
-                android:layout_gravity="right" >
-            </cn.edu.sjzc.teacher.view.StudentSideBarView>
+                android:layout_gravity="right"></cn.edu.sjzc.teacher.view.StudentSideBarView>
         </FrameLayout>
     </LinearLayout>
 
