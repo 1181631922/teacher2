@@ -3,6 +3,7 @@ package cn.edu.sjzc.teacher.uiActivity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -13,6 +14,8 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import cn.edu.sjzc.teacher.R;
+import cn.edu.sjzc.teacher.service.ConfirmSoundService;
+import cn.edu.sjzc.teacher.service.ExitSoundService;
 
 public class HomeNewsActivity extends BaseActivity {
     /**
@@ -79,6 +82,8 @@ public class HomeNewsActivity extends BaseActivity {
             wv.goBack();
             return true;
         } else if (keyCode == KeyEvent.KEYCODE_BACK) {
+            Intent it_exit = new Intent(HomeNewsActivity.this, ExitSoundService.class);
+            startService(it_exit);
             ConfirmExit();// ���˷��ؼ��Ѿ����ܷ��أ���ִ���˳�ȷ��
             return true;
         }

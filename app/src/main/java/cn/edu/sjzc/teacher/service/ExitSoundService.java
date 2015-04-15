@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Binder;
 import android.os.IBinder;
+import android.util.Log;
 
 import cn.edu.sjzc.teacher.R;
 
@@ -21,6 +22,7 @@ public class ExitSoundService extends Service {
 
     @Override
     public void onCreate() {
+        Log.d("-------------------------------------------------------------------","执行了");
         ConfirmPlayer = MediaPlayer.create(getApplicationContext(), R.raw.exit);
         super.onCreate();
     }
