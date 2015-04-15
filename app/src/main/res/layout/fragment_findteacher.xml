@@ -40,10 +40,12 @@
         android:orientation="vertical">
 
         <Button
+            android:id="@+id/find_teacher"
             android:layout_width="fill_parent"
-            android:layout_height="40dp"
+            android:layout_height="30dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
+            android:background="@drawable/login_selector"
             android:text="查找" />
 
         <FrameLayout

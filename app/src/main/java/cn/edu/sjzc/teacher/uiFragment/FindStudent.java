@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -22,13 +23,14 @@ import cn.edu.sjzc.teacher.R;
 import cn.edu.sjzc.teacher.adapter.StudentAdapter;
 import cn.edu.sjzc.teacher.bean.StudentUserBean;
 import cn.edu.sjzc.teacher.uiActivity.AdvStudentInfoActivity;
+import cn.edu.sjzc.teacher.uiActivity.FindTeacherActivity;
 import cn.edu.sjzc.teacher.util.PinyinUtils;
 import cn.edu.sjzc.teacher.view.RefreshableView;
 import cn.edu.sjzc.teacher.view.StudentSideBarView;
 import cn.edu.sjzc.teacher.view.StudentSideBarView.OnTouchingLetterChangedListener;
 
 public class FindStudent extends BaseFragment implements
-        OnTouchingLetterChangedListener {
+        OnTouchingLetterChangedListener, View.OnClickListener {
 
     public static BaseFragment newInstance(int index) {
         BaseFragment fragment = new FindStudent();
@@ -47,6 +49,7 @@ public class FindStudent extends BaseFragment implements
     private static List<Map<String, Object>> studentList = new ArrayList<Map<String, Object>>();
     private String sname, sphone;
     private RefreshableView refreshableView;
+    private Button find_teacher;
 
     private OverlayThread overlayThread = new OverlayThread();
 
@@ -65,7 +68,24 @@ public class FindStudent extends BaseFragment implements
         super.onActivityCreated(savedInstanceState);
 
         init();
+        initView();
 
+    }
+
+    private void initView() {
+        this.find_teacher = (Button) getActivity().findViewById(R.id.find_teacher);
+        this.find_teacher.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        switch (v.getId()) {
+            case R.id.find_teacher:
+                Intent it_find_teacher = new Intent(getActivity(), FindTeacherActivity.class);
+                startActivity(it_find_teacher);
+                break;
+        }
     }
 
     @Override
@@ -90,6 +110,7 @@ public class FindStudent extends BaseFragment implements
 
         }
     }
+
 
     private class OverlayThread implements Runnable {
 

@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cn.edu.sjzc.teacher"
     android:versionCode="1"
-    android:versionName="1.0">
+    android:versionName="1.0" >
 
     <uses-sdk
         android:minSdkVersion="4"
@@ -16,14 +16,16 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
+    <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/icon"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
         <activity
-            android:name="cn.edu.sjzc.teacher.uiActivity.GuideActivity"
-            android:label="@string/app_name">
+            android:name=".uiActivity.GuideActivity"
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,45 +33,48 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="cn.edu.sjzc.teacher.uiActivity.AppStartActivicy"
+            android:name=".uiActivity.AppStartActivicy"
             android:screenOrientation="portrait" />
         <activity
-            android:name="cn.edu.sjzc.teacher.uiFragment.MainTabActivity"
+            android:name=".uiFragment.MainTabActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="cn.edu.sjzc.teacher.uiActivity.SignActivity"
+            android:name=".uiActivity.SignActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="cn.edu.sjzc.teacher.uiActivity.LoginActivity"
+            android:name=".uiActivity.LoginActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="cn.edu.sjzc.teacher.uiActivity.HomeNewsActivity"
+            android:name=".uiActivity.HomeNewsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="cn.edu.sjzc.teacher.uiActivity.HomeInfoActivity"
+            android:name=".uiActivity.HomeInfoActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="cn.edu.sjzc.teacher.uiActivity.HomeExchangeActivity"
+            android:name=".uiActivity.HomeExchangeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="cn.edu.sjzc.teacher.uiActivity.PerChangeInfoActivity"
+            android:name=".uiActivity.PerChangeInfoActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="cn.edu.sjzc.teacher.uiActivity.PerChangePasswordActivity"
+            android:name=".uiActivity.PerChangePasswordActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="cn.edu.sjzc.teacher.uiActivity.PerPersonalInfoActivity"
+            android:name=".uiActivity.PerPersonalInfoActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="cn.edu.sjzc.teacher.uiActivity.PerScheduleActivity"
+            android:name=".uiActivity.PerScheduleActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="cn.edu.sjzc.teacher.uiActivity.TeacherRankingActivity"
+            android:name=".uiActivity.TeacherRankingActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="cn.edu.sjzc.teacher.uiActivity.AdvStudentInfoActivity"
+            android:name=".uiActivity.AdvStudentInfoActivity"
             android:screenOrientation="portrait" />
-
+        <activity
+            android:name=".uiActivity.FindTeacherActivity"
+            android:label="@string/title_activity_find_teacher" >
+        </activity>
     </application>
 
 </manifest>
