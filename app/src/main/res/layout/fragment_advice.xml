@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="#DCDCDC"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/upmost"
@@ -12,12 +12,12 @@
         android:layout_alignParentTop="true"
         android:layout_gravity="center_horizontal"
         android:background="#4169E1"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal" >
+            android:gravity="center_horizontal">
 
             <TextView
                 android:id="@+id/title"
@@ -37,20 +37,44 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_below="@id/upmost"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/recommend"
-                android:layout_width="fill_parent"
+            <Button
+                android:layout_width="wrap_content"
+                android:visibility="gone"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingTop="5dp" >
-            </LinearLayout>
+                android:background="@drawable/login_selector" />
+
+            <Button
+                android:id="@+id/findevaluation_class"
+                android:layout_width="fill_parent"
+                android:layout_height="30dp"
+                android:background="@drawable/login_selector" />
+
+            <ListView
+                android:id="@+id/findevaluation_teacher_listview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="#DADBDA"
+                android:fadingEdge="none" />
+
+            <Button
+                android:id="@+id/findevaluation_teacher"
+                android:layout_width="fill_parent"
+                android:layout_height="30dp"
+                android:background="@drawable/login_selector" />
+
+            <ListView
+                android:id="@+id/findevaluation_teacher_listview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="#DADBDA"
+                android:fadingEdge="none" />
         </LinearLayout>
     </ScrollView>
 
