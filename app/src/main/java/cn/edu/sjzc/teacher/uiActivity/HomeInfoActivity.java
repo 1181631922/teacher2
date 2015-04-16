@@ -7,46 +7,69 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.Window;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageButton;
+import android.widget.ProgressBar;
 
 import cn.edu.sjzc.teacher.R;
 
-public class HomeInfoActivity extends BaseActivity {
+public class HomeInfoActivity extends BaseActivity implements View.OnClickListener{
     /**
      * Called when the activity is first created.
      */
     WebView wv;
     ProgressDialog pd;
     Handler handler;
+    private ProgressBar web_show_progress;
+    private ImageButton web_show_back;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);// ȥ��������
         setContentView(R.layout.web_show);
-
-        init();// ִ�г�ʼ������
+        initView();
+        initData();// ִ�г�ʼ������
         loadurl(wv, "http://www.sjzc.edu.cn/col/1270779355718/index.html");
     }
 
-    public void init() {
+    private void initView() {
+        this.web_show_progress = (ProgressBar) HomeInfoActivity.this.findViewById(R.id.web_show_progress);
+        this.web_show_back = (ImageButton) HomeInfoActivity.this.findViewById(R.id.web_show_back);
+        this.web_show_back.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.web_show_back:
+                finish();
+                break;
+
+        }
+    }
+
+    public void initData() {
         // Progress
-        pd = new ProgressDialog(HomeInfoActivity.this);
-        pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        pd.setMessage("数据载入中，请稍候！");
+//        pd = new ProgressDialog(HomeInfoActivity.this);
+//        pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+//        pd.setMessage("数据载入中，请稍候！");
         // Show/Hide message
         handler = new Handler() {
             public void handleMessage(Message msg) {// ����һ��Handler�����ڴ��������߳���UI��ͨѶ
                 if (!Thread.currentThread().isInterrupted()) {
                     switch (msg.what) {
                         case 0:
-                            pd.show();// ��ʾ��ȶԻ���
+//                            pd.show();// ��ʾ��ȶԻ���
+                            web_show_progress.showContextMenu();
                             break;
                         case 1:
-                            pd.hide();// ���ؽ�ȶԻ��򣬲���ʹ��dismiss()��cancel(),�����ٴε���show()ʱ����ʾ�ĶԻ���СԲȦ���ᶯ��
+//                            pd.hide();// ���ؽ�ȶԻ��򣬲���ʹ��dismiss()��cancel(),�����ٴε���show()ʱ����ʾ�ĶԻ���СԲȦ���ᶯ��
+                            web_show_progress.setVisibility(View.GONE);
                             break;
                     }
                 }
@@ -112,5 +135,6 @@ public class HomeInfoActivity extends BaseActivity {
         handler.sendEmptyMessage(0);
         view.loadUrl(url);// ������ҳ
     }
+
 
 }
