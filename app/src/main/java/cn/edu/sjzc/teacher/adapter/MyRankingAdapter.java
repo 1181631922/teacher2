@@ -14,20 +14,21 @@ import android.widget.Toast;
 import java.util.List;
 
 import cn.edu.sjzc.teacher.R;
+import cn.edu.sjzc.teacher.bean.MyRankingBean;
 import cn.edu.sjzc.teacher.bean.TeacherRankingBean;
 
-public class TeacherRankingAdapter extends BaseAdapter {
+public class MyRankingAdapter extends BaseAdapter {
 	Context context;
 	LayoutInflater layoutInflater;
-	private List<TeacherRankingBean> data;
+	private List<MyRankingBean> data;
 	int markcolorCount=0;
 
-	public TeacherRankingAdapter(Context context) {
+	public MyRankingAdapter(Context context) {
 		this.context = context;
 		layoutInflater = LayoutInflater.from(context);
 	}
 
-	public void setData(List<TeacherRankingBean> data) {
+	public void setData(List<MyRankingBean> data) {
 		this.data = data;
 		this.notifyDataSetChanged();
 	}

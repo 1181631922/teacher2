@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import cn.edu.sjzc.teacher.R;
+import cn.edu.sjzc.teacher.uiActivity.MyRankingActivity;
 import cn.edu.sjzc.teacher.uiActivity.TeacherRankingActivity;
 
 public class FindEvaluation extends BaseFragment implements OnClickListener {
@@ -65,7 +66,7 @@ public class FindEvaluation extends BaseFragment implements OnClickListener {
 		case R.id.eva_score_but:
 
 			Intent it_score = new Intent(getActivity(),
-					TeacherRankingActivity.class);
+					MyRankingActivity.class);
 			FindEvaluation.this.startActivity(it_score);
 
 			break;
