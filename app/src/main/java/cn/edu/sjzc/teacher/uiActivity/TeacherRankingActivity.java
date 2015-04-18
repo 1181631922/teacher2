@@ -19,7 +19,7 @@ public class TeacherRankingActivity extends BaseActivity {
 	private List<TeacherRankingBean> data;
 	private String knowledgename[] = { "��ʦ1", "��ʦ2", "��ʦ3", "��ʦ14",
 			"��ʦ15", "��ʦ16", "��ʦ7", "��ʦ18", "��ʦ19" ,"��ʦ10"};
-	private int pencent[] = { 13, 56, 78, 35, 57, 78, 45, 26, 44 ,69};
+	private int pencent[] = { 13, 56, 78, 35, 57, 78, 45, 26, 44 ,100};
 
 
 	@Override

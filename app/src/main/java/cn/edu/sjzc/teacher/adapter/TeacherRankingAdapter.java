@@ -76,9 +76,15 @@ public class TeacherRankingAdapter extends BaseAdapter {
 		setHeight(myView.values_btn, data.get(position).getPencent()+150);
 		return convertView;
 	}
-	private int pointimg[] = { R.drawable.point_img1, R.drawable.point_img2,
-			R.drawable.point_img3, R.drawable.point_img4, R.drawable.point_img5 };
-	private int color[] = { R.color.color1, R.color.color2,R.color.color3, R.color.color4,
+	private int pointimg[] = { R.drawable.point_img1,
+            R.drawable.point_img2,
+			R.drawable.point_img3,
+            R.drawable.point_img4,
+            R.drawable.point_img5 };
+	private int color[] = { R.color.color1,
+            R.color.color2,
+            R.color.color3,
+            R.color.color4,
 			R.color.color5 };
 	public class MyView {
 		TextView textview_values, tv;
