@@ -90,6 +90,11 @@
             android:exported="true" />
 
         <receiver android:name=".broadcasterceiver.SoundBroadCasteReceiver" />
+
+        <activity
+            android:name=".uiActivity.CourseActivity"
+            android:label="@string/title_activity_course" >
+        </activity>
     </application>
 
 </manifest>

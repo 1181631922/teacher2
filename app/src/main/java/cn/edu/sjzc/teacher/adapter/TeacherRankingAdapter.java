@@ -63,6 +63,7 @@ public class TeacherRankingAdapter extends BaseAdapter {
                 @Override
                 public void onClick(View v) {
                     //可以转到定制的activity中，从而显示详情
+
                     Toast.makeText(context, "更加火爆！", Toast.LENGTH_SHORT).show();
                 }
             });

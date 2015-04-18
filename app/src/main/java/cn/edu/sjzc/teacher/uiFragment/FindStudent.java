@@ -206,10 +206,8 @@ public class FindStudent extends BaseFragment implements
 
             Intent it_student_info = new Intent(getActivity(),
                     AdvStudentInfoActivity.class);
-
             for (int i = 0; i <= position; i++) {
                 if (position == i) {
-
                     Map map = (Map) studentList.get(i);
                     String mstu = (String) map.get("s_name");
                     String mpho = (String) map.get("s_phone");

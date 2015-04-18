@@ -48,8 +48,10 @@ public class PillarView extends View {
 		 canvas.drawRect(20, 170, 90, 130, paint);
 
 		
-		//canvas.drawText(2 + "(Íò)", 10,50, paint);
+		//canvas.drawText(2 + "(ï¿½ï¿½)", 10,50, paint);
 		this.postInvalidate();
+
+
 
 
 	}

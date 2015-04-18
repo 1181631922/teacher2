@@ -35,6 +35,6 @@
     <string name="time_error">时间有问题</string>
     <string name="title_activity_find_teacher">查找教师</string>
     <string name="web_show_back">信息浏览</string>
-
+    <string name="title_activity_course">CourseActivity</string>
 
 </resources>
