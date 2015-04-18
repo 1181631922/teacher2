@@ -1,6 +1,8 @@
 package cn.edu.sjzc.teacher.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,7 @@ import java.util.List;
 import cn.edu.sjzc.teacher.R;
 import cn.edu.sjzc.teacher.bean.MyRankingBean;
 import cn.edu.sjzc.teacher.bean.TeacherRankingBean;
+import cn.edu.sjzc.teacher.uiActivity.MyRankingInfoActivity;
 
 public class MyRankingAdapter extends BaseAdapter {
 	Context context;
@@ -64,7 +67,12 @@ public class MyRankingAdapter extends BaseAdapter {
                 @Override
                 public void onClick(View v) {
                     //可以转到定制的activity中，从而显示详情
+
+                    Intent it_my_activity =new Intent(Intent.ACTION_CALL);
+                    it_my_activity.setClass(context, MyRankingInfoActivity.class);
                     Toast.makeText(context, "更加火爆！", Toast.LENGTH_SHORT).show();
+                    context.startActivity(it_my_activity);
+                    ((Activity)context).finish();
                 }
             });
 			myView.point_img = (ImageView) convertView.findViewById(R.id.point_img);

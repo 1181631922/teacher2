@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cn.edu.sjzc.teacher"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="1.0">
 
     <uses-sdk
         android:minSdkVersion="4"
@@ -22,10 +22,10 @@
         android:allowBackup="true"
         android:icon="@drawable/icon"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".uiActivity.GuideActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -93,8 +93,15 @@
 
         <activity
             android:name=".uiActivity.CourseActivity"
-            android:label="@string/title_activity_course" >
-        </activity>
+            android:label="@string/title_activity_course"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".uiActivity.MyRankingInfoActivity"
+            android:label="@string/title_activity_my_ranking_info"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".uiActivity.TeacherRankingInfoActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
