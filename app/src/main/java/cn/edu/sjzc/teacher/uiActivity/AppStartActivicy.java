@@ -10,7 +10,7 @@ import cn.edu.sjzc.teacher.R;
 import cn.edu.sjzc.teacher.uiFragment.MainTabActivity;
 
 public class AppStartActivicy extends BaseActivity {
-	Thread thread;
+	private Thread thread;
 	protected void onCreate(Bundle savedInstanceState) {
 		  super.onCreate(savedInstanceState);
 		  this.requestWindowFeature(Window.FEATURE_NO_TITLE); //ȥ��������
@@ -23,7 +23,7 @@ public class AppStartActivicy extends BaseActivity {
 		  			startActivity(intent);			
 		  			AppStartActivicy.this.finish();
 		  		}
-		  	}, 4000);     
+		  	}, 1000);
 		       
 		      
 		     }

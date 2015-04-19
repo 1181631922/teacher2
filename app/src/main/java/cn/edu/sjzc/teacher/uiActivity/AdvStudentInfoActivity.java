@@ -3,10 +3,12 @@ package cn.edu.sjzc.teacher.uiActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -17,7 +19,8 @@ public class AdvStudentInfoActivity extends BaseActivity implements OnClickListe
     private ImageButton studentinfo_back;
     private TextView student_info_name, student_info_phone;
     private Button adv_message_to, adv_phone_to;
-    private String student_name,student_phone;
+    private String student_name, student_phone;
+    private EditText adv_info_message;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,6 +53,10 @@ public class AdvStudentInfoActivity extends BaseActivity implements OnClickListe
 
         this.student_info_name = (TextView) super.findViewById(R.id.adv_info_name);
         this.student_info_phone = (TextView) super.findViewById(R.id.adv_info_phone);
+
+        this.adv_info_message = (EditText) AdvStudentInfoActivity.this.findViewById(R.id.adv_info_message);
+
+
     }
 
     @Override
@@ -61,7 +68,8 @@ public class AdvStudentInfoActivity extends BaseActivity implements OnClickListe
                 AdvStudentInfoActivity.this.finish();
                 break;
             case R.id.adv_message_to:
-                sendSMS(student_phone,null);
+                String info_message = adv_info_message.getText().toString();
+                sendSMS(student_phone, info_message);
                 break;
             case R.id.adv_phone_to:
                 phoneBody(student_phone);
@@ -72,6 +80,7 @@ public class AdvStudentInfoActivity extends BaseActivity implements OnClickListe
         }
 
     }
+
     private void phoneBody(String phoneNumber) {
         Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phoneNumber));
         AdvStudentInfoActivity.this.startActivity(intent);
@@ -79,18 +88,19 @@ public class AdvStudentInfoActivity extends BaseActivity implements OnClickListe
 
     /**
      * 此方法可以传两个参数
-     * @param number    号码
-     * @param detail    内容
+     *
+     * @param number 号码
+     * @param detail 内容
      */
-    private void sendSMS(String number,String detail)
+    private void sendSMS(String number, String smsBody)
 
     {
 
-        Uri smsToUri = Uri.parse("smsto:"+number);
+        Uri smsToUri = Uri.parse("smsto:" + number);
 
         Intent intent = new Intent(Intent.ACTION_SENDTO, smsToUri);
 
-        intent.putExtra("detail", detail);
+        intent.putExtra("sms_body", smsBody);
 
         startActivity(intent);
 

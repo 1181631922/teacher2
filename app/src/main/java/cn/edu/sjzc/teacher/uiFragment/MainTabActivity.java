@@ -92,6 +92,5 @@ public class MainTabActivity extends FragmentActivity{
 
     public void ConfirmExit() {// �˳�ȷ��
         MainExitDialog dialog=new MainExitDialog(this, R.style.mystyle, R.layout.dialog_exit_main);
-        dialog.show();
     }
 }
