@@ -243,15 +243,12 @@ public class HomePageFragment extends BaseFragment {
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
-            System.out.println("destroyItem==" + position);
             container.removeView(imageSource.get(position));
         }
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             container.addView(imageSource.get(position));
-            System.out.println("instantiateItem===" + position + "===="
-                    + container.getChildCount());
             return imageSource.get(position);
         }
     }
