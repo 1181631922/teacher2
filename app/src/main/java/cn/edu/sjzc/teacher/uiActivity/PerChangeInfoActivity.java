@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import cn.edu.sjzc.teacher.R;
-import cn.edu.sjzc.teacher.util.PerChangeInfoDialog;
+import cn.edu.sjzc.teacher.dialog.PerChangeInfoDialog;
 
 public class PerChangeInfoActivity extends BaseActivity implements OnClickListener {
 

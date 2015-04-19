@@ -23,6 +23,7 @@ public class MainTabActivity extends FragmentActivity{
 	
 	//����һ������
 	private LayoutInflater layoutInflater;
+    private MainExitDialog dialog;
 		
 	//�������������Fragment����
 	private Class fragmentArray[] = {HomePage.class,FindEvaluation.class,FindAdvice.class,FindStudent.class,PersonalCenter.class};
@@ -92,5 +93,15 @@ public class MainTabActivity extends FragmentActivity{
 
     public void ConfirmExit() {// �˳�ȷ��
         MainExitDialog dialog=new MainExitDialog(this, R.style.mystyle, R.layout.dialog_exit_main);
+        dialog.show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        /**
+         * 此处调用空指针异常，因为是activity现消除的
+         */
+//            dialog.dismiss();
     }
 }

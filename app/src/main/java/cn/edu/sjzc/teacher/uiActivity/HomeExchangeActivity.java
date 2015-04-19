@@ -16,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 
 import cn.edu.sjzc.teacher.R;
+import cn.edu.sjzc.teacher.dialog.HomeExchangeDialog;
 
 public class HomeExchangeActivity extends BaseActivity implements View.OnClickListener{
     /**
@@ -110,24 +111,8 @@ public class HomeExchangeActivity extends BaseActivity implements View.OnClickLi
     }
 
     public void ConfirmExit() {// �˳�ȷ��
-        AlertDialog.Builder ad = new AlertDialog.Builder(HomeExchangeActivity.this);
-        ad.setTitle("退出");
-        ad.setMessage("是否返回到主页?");
-        ad.setPositiveButton("是", new DialogInterface.OnClickListener() {// �˳���ť
-            @Override
-            public void onClick(DialogInterface dialog, int i) {
-                // TODO Auto-generated method stub
-                HomeExchangeActivity.this.finish();// �ر�activity
-
-            }
-        });
-        ad.setNegativeButton("否", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int i) {
-                // ���˳�����ִ���κβ���
-            }
-        });
-        ad.show();// ��ʾ�Ի���
+        HomeExchangeDialog dialog=new HomeExchangeDialog(this, R.style.mystyle, R.layout.dialog_exit_main);
+        dialog.show();
     }
 
     public void loadurl(final WebView view, final String url) {

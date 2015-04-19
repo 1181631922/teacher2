@@ -16,7 +16,7 @@
             android:layout_width="fill_parent"
             android:layout_height="50dp"
             android:gravity="center"
-            android:text="更改"
+            android:text="返回"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
 
@@ -30,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="40sp"
                 android:layout_marginLeft="10dp"
-                android:text="你确定更改吗？"
+                android:text="是否返回主页？"
                 android:textColor="@android:color/black"
                 android:textSize="15sp" />
         </LinearLayout>

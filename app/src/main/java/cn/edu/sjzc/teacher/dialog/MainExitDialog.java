@@ -87,6 +87,7 @@ public class MainExitDialog extends Dialog implements View.OnClickListener {
                  * 主要是系统不值退出那一个
                  * ValueUtil.mainTabActivity.finish();
                  */
+                MainExitDialog.this.dismiss();
                 break;
             case R.id.cancel_btn:
                 MainExitDialog.this.dismiss();
