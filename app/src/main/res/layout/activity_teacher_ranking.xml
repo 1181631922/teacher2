@@ -28,7 +28,7 @@
                 android:layout_weight="0">
 
                 <ImageButton
-                    android:id="@+id/schedule_back"
+                    android:id="@+id/rankging_back"
                     android:layout_width="18dp"
                     android:layout_height="25dp"
                     android:background="#00000000"
@@ -36,7 +36,7 @@
             </FrameLayout>
 
             <TextView
-                android:id="@+id/title"
+                android:id="@+id/ranking_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
@@ -61,6 +61,7 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/ranking_detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"

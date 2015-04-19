@@ -72,7 +72,7 @@ public class MyRankingAdapter extends BaseAdapter {
                     it_my_activity.setClass(context, MyRankingInfoActivity.class);
                     Toast.makeText(context, "更加火爆！", Toast.LENGTH_SHORT).show();
                     context.startActivity(it_my_activity);
-                    ((Activity)context).finish();
+//                    ((Activity)context).finish();
                 }
             });
 			myView.point_img = (ImageView) convertView.findViewById(R.id.point_img);

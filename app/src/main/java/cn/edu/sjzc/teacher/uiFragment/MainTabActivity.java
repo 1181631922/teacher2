@@ -1,8 +1,11 @@
 package cn.edu.sjzc.teacher.uiFragment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -11,13 +14,11 @@ import android.widget.TabHost.TabSpec;
 import android.widget.TextView;
 
 import cn.edu.sjzc.teacher.R;
+import cn.edu.sjzc.teacher.dialog.MainExitDialog;
 
 /**
- * @author yangyu
- *	�����������Զ���TabHost
  */
 public class MainTabActivity extends FragmentActivity{	
-	//����FragmentTabHost����
 	private FragmentTabHost mTabHost;
 	
 	//����һ������
@@ -79,4 +80,18 @@ public class MainTabActivity extends FragmentActivity{
 	
 		return view;
 	}
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            ConfirmExit();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    public void ConfirmExit() {// �˳�ȷ��
+        MainExitDialog dialog=new MainExitDialog(this, R.style.mystyle, R.layout.dialog_exit_main);
+        dialog.show();
+    }
 }
