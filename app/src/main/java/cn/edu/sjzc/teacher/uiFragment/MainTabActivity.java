@@ -1,98 +1,131 @@
 package cn.edu.sjzc.teacher.uiFragment;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TabHost.TabSpec;
 import android.widget.TextView;
 
 import cn.edu.sjzc.teacher.R;
 import cn.edu.sjzc.teacher.dialog.MainExitDialog;
+import cn.edu.sjzc.teacher.uiActivity.RetroactionActivity;
 
 /**
  */
-public class MainTabActivity extends FragmentActivity{	
-	private FragmentTabHost mTabHost;
-	
-	//����һ������
-	private LayoutInflater layoutInflater;
-    private MainExitDialog dialog;
-		
-	//�������������Fragment����
-	private Class fragmentArray[] = {HomePage.class,FindEvaluation.class,FindAdvice.class,FindStudent.class,PersonalCenter.class};
-	
-	//������������Ű�ťͼƬ
-	private int mImageViewArray[] = {R.drawable.tab_home_btn,R.drawable.tab_message_btn,R.drawable.tab_selfinfo_btn,
-									 R.drawable.tab_square_btn,R.drawable.tab_more_btn};
-	
-	//Tabѡ�������
-	private String mTextviewArray[] = {"首页", "查看评估", "评价老师", "查找教师", "个人信息"};
-	
-	public void onCreate(Bundle savedInstanceState) {
+public class MainTabActivity extends FragmentActivity implements View.OnClickListener{
+    private FragmentTabHost mTabHost;
+
+    //����һ������
+    private LayoutInflater layoutInflater;
+    private MainExitDialog dialog1;
+    private Dialog dialog;
+
+    //�������������Fragment����
+    private Class fragmentArray[] = {HomePage.class, FindEvaluation.class, FindAdvice.class, FindStudent.class, PersonalCenter.class};
+
+    //������������Ű�ťͼƬ
+    private int mImageViewArray[] = {R.drawable.tab_home_btn, R.drawable.tab_message_btn, R.drawable.tab_selfinfo_btn,
+            R.drawable.tab_square_btn, R.drawable.tab_more_btn};
+
+    //Tabѡ�������
+    private String mTextviewArray[] = {"首页", "查看评估", "评价老师", "查找教师", "个人信息"};
+
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.main_tab_layout);
-        
+
         initView();
     }
-	 
-	/**
-	 * ��ʼ�����
-	 */
-	private void initView(){
-		//ʵ��ֶ���
-		layoutInflater = LayoutInflater.from(this);
-				
-		//ʵ��TabHost���󣬵õ�TabHost
-		mTabHost = (FragmentTabHost)findViewById(android.R.id.tabhost);
-		mTabHost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);	
-		
-		//�õ�fragment�ĸ���
-		int count = fragmentArray.length;	
-				
-		for(int i = 0; i < count; i++){	
-			//Ϊÿһ��Tab��ť����ͼ�ꡢ���ֺ�����
-			TabSpec tabSpec = mTabHost.newTabSpec(mTextviewArray[i]).setIndicator(getTabItemView(i));
-			//��Tab��ť��ӽ�Tabѡ���
-			mTabHost.addTab(tabSpec, fragmentArray[i], null);
-			//����Tab��ť�ı���
-			mTabHost.getTabWidget().getChildAt(i).setBackgroundResource(R.drawable.selector_tab_background);
-		}
-	}
-				
-	/**
-	 * ��Tab��ť����ͼ�������
-	 */
-	private View getTabItemView(int index){
-		View view = layoutInflater.inflate(R.layout.tab_item_view, null);
-	
-		ImageView imageView = (ImageView) view.findViewById(R.id.imageview);
-		imageView.setImageResource(mImageViewArray[index]);
-		
-		TextView textView = (TextView) view.findViewById(R.id.textview);
-		textView.setText(mTextviewArray[index]);
-	
-		return view;
-	}
+
+    /**
+     * ��ʼ�����
+     */
+    private void initView() {
+        //ʵ��ֶ���
+        layoutInflater = LayoutInflater.from(this);
+
+        //ʵ��TabHost���󣬵õ�TabHost
+        mTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
+        mTabHost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
+
+        //�õ�fragment�ĸ���
+        int count = fragmentArray.length;
+
+        for (int i = 0; i < count; i++) {
+            //Ϊÿһ��Tab��ť����ͼ�ꡢ���ֺ�����
+            TabSpec tabSpec = mTabHost.newTabSpec(mTextviewArray[i]).setIndicator(getTabItemView(i));
+            //��Tab��ť��ӽ�Tabѡ���
+            mTabHost.addTab(tabSpec, fragmentArray[i], null);
+            //����Tab��ť�ı���
+            mTabHost.getTabWidget().getChildAt(i).setBackgroundResource(R.drawable.selector_tab_background);
+        }
+    }
+
+    /**
+     * ��Tab��ť����ͼ�������
+     */
+    private View getTabItemView(int index) {
+        View view = layoutInflater.inflate(R.layout.tab_item_view, null);
+
+        ImageView imageView = (ImageView) view.findViewById(R.id.imageview);
+        imageView.setImageResource(mImageViewArray[index]);
+
+        TextView textView = (TextView) view.findViewById(R.id.textview);
+        textView.setText(mTextviewArray[index]);
+
+        return view;
+    }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            ConfirmExit();
-            return true;
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_BACK:
+                ConfirmExit();
+                break;
+            case KeyEvent.KEYCODE_MENU:
+                showDialog();
+                break;
         }
+
         return super.onKeyDown(keyCode, event);
     }
 
     public void ConfirmExit() {// �˳�ȷ��
-        MainExitDialog dialog=new MainExitDialog(this, R.style.mystyle, R.layout.dialog_exit_main);
+        MainExitDialog dialog1 = new MainExitDialog(this, R.style.mystyle, R.layout.dialog_exit_main);
+        dialog1.show();
+    }
+
+    private void showDialog() {
+        View view = getLayoutInflater().inflate(R.layout.dialog_exit_choose,
+                null);
+        dialog = new Dialog(this, R.style.transparentFrameWindowStyle);
+        dialog.setContentView(view, new LayoutParams(LayoutParams.FILL_PARENT,
+                LayoutParams.WRAP_CONTENT));
+        Window window = dialog.getWindow();
+        // 设置显示动画
+        window.setWindowAnimations(R.style.main_menu_animstyle);
+        WindowManager.LayoutParams wl = window.getAttributes();
+        wl.x = 0;
+        wl.y = getWindowManager().getDefaultDisplay().getHeight();
+        // 以下这两句是为了保证按钮可以水平满屏
+        wl.width = ViewGroup.LayoutParams.MATCH_PARENT;
+        wl.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+
+        // 设置显示位置
+        dialog.onWindowAttributesChanged(wl);
+        // 设置点击外围解散
+        dialog.setCanceledOnTouchOutside(true);
         dialog.show();
     }
 
@@ -103,5 +136,23 @@ public class MainTabActivity extends FragmentActivity{
          * 此处调用空指针异常，因为是activity现消除的
          */
 //            dialog.dismiss();
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.main_tab_retroaction:
+                Intent it_retroaction = new Intent(MainTabActivity.this, RetroactionActivity.class);
+                startActivity(it_retroaction);
+                dialog.dismiss();
+            break;
+            case R.id.main_tab_exit:
+                finish();
+                dialog.dismiss();
+            break;
+            case R.id.main_tab_cancel:
+                dialog.dismiss();
+            break;
+        }
     }
 }

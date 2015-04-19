@@ -37,5 +37,7 @@
     <string name="web_show_back">信息浏览</string>
     <string name="title_activity_course">CourseActivity</string>
     <string name="title_activity_my_ranking_info">我的得分详情</string>
+    <string name="title_activity_retroaction">RetroactionActivity</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

@@ -215,7 +215,7 @@
                 android:gravity="center">
 
                 <TextView
-                    android:id="@+id/user_email"
+                    android:id="@+id/us_email"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:layout_marginLeft="20dp"
@@ -229,7 +229,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:layout_toRightOf="@id/user_email"
+                    android:layout_toRightOf="@id/us_email"
                     android:gravity="center_vertical"
                     android:paddingTop="8dp"
                     android:background="@android:color/transparent"
