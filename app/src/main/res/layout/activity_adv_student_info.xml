@@ -85,7 +85,7 @@
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/student_info_name"
+                    android:id="@+id/adv_info_name"
                     android:layout_width="fill_parent"
                     android:layout_height="40dp"
                     android:layout_marginLeft="20dp"
@@ -119,7 +119,7 @@
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/student_info_phone"
+                    android:id="@+id/adv_info_phone"
                     android:layout_width="fill_parent"
                     android:layout_height="40dp"
                     android:layout_marginLeft="20dp"
@@ -153,11 +153,10 @@
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/student_info_office"
+                    android:id="@+id/adv_info_office"
                     android:layout_width="fill_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginTop="1dp"
                     android:layout_toRightOf="@id/user_office"
                     android:background="@android:color/transparent"
                     android:gravity="center"
@@ -189,15 +188,54 @@
                 <TextView
                     android:id="@+id/student_info_email"
                     android:layout_width="fill_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginTop="1dp"
                     android:layout_toRightOf="@id/user_email"
                     android:background="@android:color/transparent"
                     android:gravity="center"
                     android:textSize="16sp" />
             </RelativeLayout>
 
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:background="#808A87" />
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="20dp"
+                android:background="#DCDCDC" />
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:background="#808A87" />
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:background="#FFFFFF"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/user_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="center"
+                    android:text="短信内容"
+                    android:textColor="#000000"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/adv_info_message"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_toRightOf="@id/user_email"
+                    android:gravity="center_vertical"
+                    android:paddingTop="8dp"
+                    android:background="@android:color/transparent"
+                    android:hint="请输入要给老师发送的短信内容"
+                    android:textSize="16sp" />
+            </RelativeLayout>
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="1px"
@@ -214,21 +252,21 @@
 
 
         <Button
-            android:id="@+id/phone_to"
-            android:layout_width="wrap_content"
+            android:id="@+id/adv_phone_to"
+            android:layout_width="160dp"
             android:layout_height="40dp"
-            android:layout_marginRight="30dp"
-            android:text="打电话"
+            android:layout_marginRight="10dp"
+            android:text="拨打电话"
             android:background="@drawable/login_selector"
             android:textSize="16sp" />
 
         <Button
-            android:id="@+id/message_to"
-            android:layout_width="wrap_content"
+            android:id="@+id/adv_message_to"
+            android:layout_width="160dp"
             android:layout_height="40dp"
-            android:layout_marginLeft="30dp"
-            android:layout_toRightOf="@id/phone_to"
-            android:text="发短信"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/adv_phone_to"
+            android:text="发送短信"
             android:background="@drawable/login_selector"
             android:textSize="16sp" />
     </RelativeLayout>

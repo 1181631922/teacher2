@@ -1,10 +1,12 @@
 package cn.edu.sjzc.teacher.uiActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -12,60 +14,86 @@ import cn.edu.sjzc.teacher.R;
 
 public class AdvStudentInfoActivity extends BaseActivity implements OnClickListener {
 
-	private ImageButton studentinfo_back;
-	private TextView student_info_name, student_info_phone;
+    private ImageButton studentinfo_back;
+    private TextView student_info_name, student_info_phone;
+    private Button adv_message_to, adv_phone_to;
+    private String student_name,student_phone;
 
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);// �������ڷ���
-		requestWindowFeature(Window.FEATURE_NO_TITLE);// ȥ��������
-		super.setContentView(R.layout.activity_adv_student_info);
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        super.setContentView(R.layout.activity_adv_student_info);
 
-		init();
+        initView();
+        initData();
+    }
 
-		initData();
+    private void initData() {
 
-	}
+        Intent it = this.getIntent();
 
-	private void initData() {
+        student_name = it.getStringExtra("student_name");
+        student_phone = it.getStringExtra("student_phone");
 
-		Intent it = this.getIntent();
+        this.student_info_name.setText(student_name);
+        this.student_info_phone.setText(student_phone);
+    }
 
-		String student_name = it.getStringExtra("student_name");
-		String student_phone = it.getStringExtra("student_phone");
+    private void initView() {
+        ImageButton changepassword_back = (ImageButton) this.findViewById(R.id.studentinfo_back);
+        changepassword_back.setOnClickListener(this);
+        this.adv_message_to = (Button) this.findViewById(R.id.adv_message_to);
+        this.adv_message_to.setOnClickListener(this);
+        this.adv_phone_to = (Button) this.findViewById(R.id.adv_phone_to);
+        this.adv_phone_to.setOnClickListener(this);
 
-		this.student_info_name.setText(student_name);
+        this.student_info_name = (TextView) super.findViewById(R.id.adv_info_name);
+        this.student_info_phone = (TextView) super.findViewById(R.id.adv_info_phone);
+    }
 
-		this.student_info_phone.setText(student_phone);
-	}
+    @Override
+    public void onClick(View v) {
+        // TODO Auto-generated method stub
 
-	private void init() {
-		ImageButton changepassword_back = (ImageButton) this
-				.findViewById(R.id.studentinfo_back);
-		changepassword_back.setOnClickListener(this);
+        switch (v.getId()) {
+            case R.id.studentinfo_back:
+                AdvStudentInfoActivity.this.finish();
+                break;
+            case R.id.adv_message_to:
+                sendSMS(student_phone,null);
+                break;
+            case R.id.adv_phone_to:
+                phoneBody(student_phone);
+                break;
 
-		this.student_info_name = (TextView) super
-				.findViewById(R.id.student_info_name);
+            default:
+                break;
+        }
 
-		this.student_info_phone = (TextView) super
-				.findViewById(R.id.student_info_phone);
-	}
+    }
+    private void phoneBody(String phoneNumber) {
+        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phoneNumber));
+        AdvStudentInfoActivity.this.startActivity(intent);
+    }
 
-	@Override
-	public void onClick(View v) {
-		// TODO Auto-generated method stub
+    /**
+     * 此方法可以传两个参数
+     * @param number    号码
+     * @param detail    内容
+     */
+    private void sendSMS(String number,String detail)
 
-		switch (v.getId()) {
-		case R.id.studentinfo_back:
+    {
 
-			AdvStudentInfoActivity.this.finish();
+        Uri smsToUri = Uri.parse("smsto:"+number);
 
-			break;
+        Intent intent = new Intent(Intent.ACTION_SENDTO, smsToUri);
 
-		default:
-			break;
-		}
+        intent.putExtra("detail", detail);
 
-	}
+        startActivity(intent);
+
+    }
 
 }
