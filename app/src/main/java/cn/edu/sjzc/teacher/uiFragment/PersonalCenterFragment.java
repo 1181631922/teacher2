@@ -14,10 +14,10 @@ import cn.edu.sjzc.teacher.uiActivity.PerChangePasswordActivity;
 import cn.edu.sjzc.teacher.uiActivity.PerPersonalInfoActivity;
 import cn.edu.sjzc.teacher.uiActivity.PerScheduleActivity;
 
-public class PersonalCenter extends BaseFragment implements OnClickListener {
+public class PersonalCenterFragment extends BaseFragment implements OnClickListener {
 	
 	public static BaseFragment newInstance(int index) {
-		BaseFragment fragment = new PersonalCenter();
+		BaseFragment fragment = new PersonalCenterFragment();
 		Bundle args = new Bundle();
 		args.putInt("index", index);
 		fragment.setArguments(args);
@@ -68,21 +68,21 @@ public class PersonalCenter extends BaseFragment implements OnClickListener {
 		switch (v.getId()) {
 		case R.id.user_but:
 			Intent it_user = new Intent(getActivity(), PerChangeInfoActivity.class);
-			PersonalCenter.this.startActivity(it_user);
+			PersonalCenterFragment.this.startActivity(it_user);
 			break;
 		case R.id.per_person_but:
 			Intent it_person = new Intent(getActivity(), PerPersonalInfoActivity.class);
-			PersonalCenter.this.startActivity(it_person);
+			PersonalCenterFragment.this.startActivity(it_person);
 			break;
 
 		case R.id.per_password_but:
 			Intent it_password = new Intent(getActivity(), PerChangePasswordActivity.class);
-			PersonalCenter.this.startActivity(it_password);
+			PersonalCenterFragment.this.startActivity(it_password);
 			break;
 
 		case R.id.per_schedule_but:
 			Intent it_schedule = new Intent(getActivity(), PerScheduleActivity.class);
-			PersonalCenter.this.startActivity(it_schedule);
+			PersonalCenterFragment.this.startActivity(it_schedule);
 			break;
 
 		default:

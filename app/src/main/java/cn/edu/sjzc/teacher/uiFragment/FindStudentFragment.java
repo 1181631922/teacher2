@@ -29,11 +29,11 @@ import cn.edu.sjzc.teacher.view.RefreshableView;
 import cn.edu.sjzc.teacher.view.StudentSideBarView;
 import cn.edu.sjzc.teacher.view.StudentSideBarView.OnTouchingLetterChangedListener;
 
-public class FindStudent extends BaseFragment implements
+public class FindStudentFragment extends BaseFragment implements
         OnTouchingLetterChangedListener, View.OnClickListener {
 
     public static BaseFragment newInstance(int index) {
-        BaseFragment fragment = new FindStudent();
+        BaseFragment fragment = new FindStudentFragment();
         Bundle args = new Bundle();
         args.putInt("index", index);
         fragment.setArguments(args);

@@ -1,6 +1,5 @@
 package cn.edu.sjzc.teacher.util;
 
-import cn.edu.sjzc.teacher.adapter.TeacherRankingAdapter;
 import cn.edu.sjzc.teacher.uiActivity.AdvStudentInfoActivity;
 import cn.edu.sjzc.teacher.uiActivity.AppStartActivicy;
 import cn.edu.sjzc.teacher.uiActivity.BaseActivity;
@@ -22,12 +21,12 @@ import cn.edu.sjzc.teacher.uiActivity.SignActivity;
 import cn.edu.sjzc.teacher.uiActivity.TeacherRankingActivity;
 import cn.edu.sjzc.teacher.uiActivity.TeacherRankingInfoActivity;
 import cn.edu.sjzc.teacher.uiFragment.BaseFragment;
-import cn.edu.sjzc.teacher.uiFragment.FindAdvice;
-import cn.edu.sjzc.teacher.uiFragment.FindEvaluation;
-import cn.edu.sjzc.teacher.uiFragment.FindStudent;
-import cn.edu.sjzc.teacher.uiFragment.HomePage;
+import cn.edu.sjzc.teacher.uiFragment.FindAdviceFragment;
+import cn.edu.sjzc.teacher.uiFragment.FindEvaluationFragment;
+import cn.edu.sjzc.teacher.uiFragment.FindStudentFragment;
+import cn.edu.sjzc.teacher.uiFragment.HomePageFragment;
 import cn.edu.sjzc.teacher.uiFragment.MainTabActivity;
-import cn.edu.sjzc.teacher.uiFragment.PersonalCenter;
+import cn.edu.sjzc.teacher.uiFragment.PersonalCenterFragment;
 
 public class ValueUtil {
 	public static AppStartActivicy appStartActivicy;
@@ -52,10 +51,10 @@ public class ValueUtil {
     public static TeacherRankingActivity teacherRankingActivity;
     public static TeacherRankingInfoActivity teacherRankingInfoActivity;
     public static BaseFragment baseFragment;
-    public static FindAdvice findAdvice;
-    public static FindEvaluation findEvaluation;
-    public static FindStudent findStudent;
-    public static HomePage homePage;
-    public static PersonalCenter personalCenter;
+    public static FindAdviceFragment findAdviceFragment;
+    public static FindEvaluationFragment findEvaluationFragment;
+    public static FindStudentFragment findStudentFragment;
+    public static HomePageFragment homePageFragment;
+    public static PersonalCenterFragment personalCenterFragment;
 
 }

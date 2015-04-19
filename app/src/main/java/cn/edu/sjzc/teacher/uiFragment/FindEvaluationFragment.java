@@ -12,10 +12,10 @@ import cn.edu.sjzc.teacher.R;
 import cn.edu.sjzc.teacher.uiActivity.MyRankingActivity;
 import cn.edu.sjzc.teacher.uiActivity.TeacherRankingActivity;
 
-public class FindEvaluation extends BaseFragment implements OnClickListener {
+public class FindEvaluationFragment extends BaseFragment implements OnClickListener {
 	
 	public static BaseFragment newInstance(int index) {
-		BaseFragment fragment = new FindEvaluation();
+		BaseFragment fragment = new FindEvaluationFragment();
 		Bundle args = new Bundle();
 		args.putInt("index", index);
 		fragment.setArguments(args);
@@ -67,14 +67,14 @@ public class FindEvaluation extends BaseFragment implements OnClickListener {
 
 			Intent it_score = new Intent(getActivity(),
 					MyRankingActivity.class);
-			FindEvaluation.this.startActivity(it_score);
+			FindEvaluationFragment.this.startActivity(it_score);
 
 			break;
 		case R.id.eva_otherteacher_but:
 
 			Intent it_otherteacher = new Intent(getActivity(),
 					TeacherRankingActivity.class);
-			FindEvaluation.this.startActivity(it_otherteacher);
+			FindEvaluationFragment.this.startActivity(it_otherteacher);
 
 			break;
 

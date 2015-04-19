@@ -29,10 +29,10 @@ import cn.edu.sjzc.teacher.uiActivity.HomeInfoActivity;
 import cn.edu.sjzc.teacher.uiActivity.HomeNewsActivity;
 import cn.edu.sjzc.teacher.uiActivity.LoginActivity;
 
-public class HomePage extends BaseFragment {
+public class HomePageFragment extends BaseFragment {
 
     public static BaseFragment newInstance(int index) {
-        BaseFragment fragment = new HomePage();
+        BaseFragment fragment = new HomePageFragment();
         Bundle args = new Bundle();
         args.putInt("index", index);
         fragment.setArguments(args);
@@ -83,7 +83,7 @@ public class HomePage extends BaseFragment {
             @Override
             public void onClick(View v) {
                 Intent it = new Intent(getActivity(), LoginActivity.class);
-                HomePage.this.startActivity(it);
+                HomePageFragment.this.startActivity(it);
             }
         });
 
@@ -94,7 +94,7 @@ public class HomePage extends BaseFragment {
             public void onClick(View v) {
                 // TODO Auto-generated method stub
                 Intent it = new Intent(getActivity(), HomeNewsActivity.class);
-                HomePage.this.startActivity(it);
+                HomePageFragment.this.startActivity(it);
             }
         });
 
@@ -105,7 +105,7 @@ public class HomePage extends BaseFragment {
             public void onClick(View v) {
                 // TODO Auto-generated method stub
                 Intent it = new Intent(getActivity(), HomeInfoActivity.class);
-                HomePage.this.startActivity(it);
+                HomePageFragment.this.startActivity(it);
             }
         });
 
@@ -116,7 +116,7 @@ public class HomePage extends BaseFragment {
             public void onClick(View v) {
                 // TODO Auto-generated method stub
                 Intent it = new Intent(getActivity(), HomeExchangeActivity.class);
-                HomePage.this.startActivity(it);
+                HomePageFragment.this.startActivity(it);
             }
         });
 
@@ -227,7 +227,7 @@ public class HomePage extends BaseFragment {
                 public void onClick(View v) {
                     // TODO Auto-generated method stub
                     Intent it = new Intent(getActivity(), LoginActivity.class);
-                    HomePage.this.startActivity(it);
+                    HomePageFragment.this.startActivity(it);
                 }
             });
             ViewPager viewPager = (ViewPager) container;

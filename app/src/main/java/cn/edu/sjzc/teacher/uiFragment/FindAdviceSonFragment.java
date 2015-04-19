@@ -1,9 +1,11 @@
 package cn.edu.sjzc.teacher.uiFragment;
 
 import android.os.Bundle;
+import android.support.v4.app.FragmentTabHost;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import cn.edu.sjzc.teacher.R;
 
@@ -18,8 +20,28 @@ public class FindAdviceSonFragment extends BaseFragment{
 		return fragment;
 	}
 
-	@Override
+    private View layoutView;
+    private FragmentTabHost mTabHost;
+    private TextView textView;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-		return inflater.inflate(R.layout.fragment_find_advice_son, null);
-	}	
+		layoutView= inflater.inflate(R.layout.fragment_advice, null);
+        init(getIndex());
+        return layoutView;
+	}
+    public void init(int i){
+        if (i==0){
+            TextView tv = (TextView) layoutView.findViewById(R.id.textView111);
+            tv.setText( 1+ "");
+        }if (i==1){
+            TextView tv = (TextView) layoutView.findViewById(R.id.textView111);
+            tv.setText( 2+ "");
+        }
+    }
 }
