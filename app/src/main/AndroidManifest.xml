@@ -104,6 +104,10 @@
             android:name=".uiActivity.RetroactionActivity"
             android:label="@string/title_activity_retroaction" >
         </activity>
+        <activity
+            android:name=".uiActivity.SearchInfoActivity"
+            android:label="@string/title_activity_search_info" >
+        </activity>
     </application>
 
 </manifest>

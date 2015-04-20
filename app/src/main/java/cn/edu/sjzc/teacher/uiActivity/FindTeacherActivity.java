@@ -1,11 +1,13 @@
 package cn.edu.sjzc.teacher.uiActivity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -65,15 +67,20 @@ public class FindTeacherActivity extends BaseActivity implements View.OnClickLis
 //        }
 
         Arrays.sort(findTeacherArray);
-
         searchBeans = Arrays.asList(findTeacherArray);
-
-        searchAdapter = new SearchAdapter(FindTeacherActivity.this,
-                searchBeans);
+        searchAdapter = new SearchAdapter(FindTeacherActivity.this,searchBeans);
 
         searchTeacherListview.setAdapter(searchAdapter);
 
-//        pro_listview.setOnItemClickListener(new proInfoOnItemClickListener());
+        searchTeacherListview.setOnItemClickListener(new searchInfoOnItemClickListener());
+    }
+
+    public class searchInfoOnItemClickListener implements AdapterView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            Intent it_searchinfo=new Intent(FindTeacherActivity.this,SearchInfoActivity.class);
+            startActivity(it_searchinfo);
+        }
     }
 
     private void initView() {
