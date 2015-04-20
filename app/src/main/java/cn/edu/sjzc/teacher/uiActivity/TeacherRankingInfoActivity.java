@@ -3,17 +3,26 @@ package cn.edu.sjzc.teacher.uiActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
+import android.widget.ImageButton;
 
 import cn.edu.sjzc.teacher.R;
 
-public class TeacherRankingInfoActivity extends BaseActivity {
+public class TeacherRankingInfoActivity extends BaseActivity implements View.OnClickListener {
+    private ImageButton teacher_ranking_info_back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_teacher_ranking_info);
+        initView();
+    }
+
+    private void initView() {
+        this.teacher_ranking_info_back = (ImageButton) TeacherRankingInfoActivity.this.findViewById(R.id.teacher_ranking_info_back);
+        this.teacher_ranking_info_back.setOnClickListener(this);
     }
 
 
@@ -37,5 +46,14 @@ public class TeacherRankingInfoActivity extends BaseActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.teacher_ranking_info_back:
+                finish();
+                break;
+        }
     }
 }

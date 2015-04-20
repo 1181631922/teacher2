@@ -4,17 +4,26 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
+import android.widget.ImageButton;
 
 import cn.edu.sjzc.teacher.R;
 
-public class SearchInfoActivity extends Activity {
+public class SearchInfoActivity extends Activity implements View.OnClickListener {
+    private ImageButton search_info_back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_search_info);
+        initView();
+    }
+
+    private void initView() {
+        this.search_info_back = (ImageButton) SearchInfoActivity.this.findViewById(R.id.search_info_back);
+        this.search_info_back.setOnClickListener(this);
     }
 
 
@@ -38,5 +47,14 @@ public class SearchInfoActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.search_info_back:
+                finish();
+                break;
+        }
     }
 }

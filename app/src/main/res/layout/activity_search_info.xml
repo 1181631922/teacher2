@@ -27,7 +27,7 @@
                 android:layout_weight="0">
 
                 <ImageButton
-                    android:id="@+id/my_ranking_info_back"
+                    android:id="@+id/search_info_back"
                     android:layout_width="18dp"
                     android:layout_height="25dp"
                     android:background="#00000000"
