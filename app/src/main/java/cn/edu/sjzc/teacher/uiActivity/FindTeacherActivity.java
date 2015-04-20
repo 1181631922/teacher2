@@ -8,11 +8,24 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 import cn.edu.sjzc.teacher.R;
+import cn.edu.sjzc.teacher.adapter.SearchAdapter;
+import cn.edu.sjzc.teacher.bean.SearchBean;
 
 public class FindTeacherActivity extends BaseActivity implements View.OnClickListener {
     private ImageButton findteacher_back;
+    private ListView searchTeacherListview;
+    private SearchAdapter searchAdapter;
+    private List<SearchBean> searchBeans;
+    private List<Map<String, Object>> searchList = new ArrayList<Map<String, Object>>();
+    private Button find_teacher_but;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,11 +33,54 @@ public class FindTeacherActivity extends BaseActivity implements View.OnClickLis
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_find_teacher);
         initView();
+//        initData();
+    }
+
+    private void initData() {
+        ListView searchTeacherListview = (ListView) FindTeacherActivity.this.findViewById(R.id.find_teacher_listview);
+
+        searchBeans = new ArrayList<SearchBean>();
+        SearchBean[] findTeacherArray = new SearchBean[]{
+                new SearchBean("老师1", "13052658856"),
+                new SearchBean("老师1", "13052658856"),
+                new SearchBean("老师1", "13052658856"),
+                new SearchBean("老师1", "13052658856"),
+                new SearchBean("老师1", "13052658856"),
+                new SearchBean("老师1", "13052658856"),
+                new SearchBean("老师1", "13052658856"),
+                new SearchBean("老师1", "13052658856"),
+                new SearchBean("老师1", "13052658856"),
+                new SearchBean("老师1", "13052658856"),
+                new SearchBean("老师1", "13052658856"),
+                new SearchBean("老师1", "13052658856"),
+                new SearchBean("老师1", "13052658856"),
+                new SearchBean("老师1", "13052658856")};
+
+//        for (int i = 0; i < FindProjectArray.length; i++) {
+//            FindProjectBean findProjectBeans = new FindProjectBean(ptitle);
+//            String ptitle = FindProjectArray[i].getFindProjectTitle();
+//            Map<String, Object> map = new HashMap<String, Object>();
+//            map.put("p_title", ptitle);
+//            findProjectList.add(map);
+//        }
+
+        Arrays.sort(findTeacherArray);
+
+        searchBeans = Arrays.asList(findTeacherArray);
+
+        searchAdapter = new SearchAdapter(FindTeacherActivity.this,
+                searchBeans);
+
+        searchTeacherListview.setAdapter(searchAdapter);
+
+//        pro_listview.setOnItemClickListener(new proInfoOnItemClickListener());
     }
 
     private void initView() {
         this.findteacher_back = (ImageButton) FindTeacherActivity.this.findViewById(R.id.findteacher_back);
         this.findteacher_back.setOnClickListener(this);
+        this.find_teacher_but=(Button)FindTeacherActivity.this.findViewById(R.id.find_teacher_but);
+        this.find_teacher_but.setOnClickListener(this);
     }
 
     @Override
@@ -32,6 +88,9 @@ public class FindTeacherActivity extends BaseActivity implements View.OnClickLis
         switch (v.getId()) {
             case R.id.findteacher_back:
                 finish();
+                break;
+            case R.id.find_teacher_but:
+                initData();
                 break;
         }
     }

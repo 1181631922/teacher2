@@ -50,10 +50,10 @@ public class FindAdviceSonFragment extends BaseFragment{
 
     public void init(int i){
         if (i==0){
-            tv.setText( 1+ "");
+            tv.setText("根据课程评价");
             Log.d("---------------------------------------------------------------------------------------",1+"");
         }else if(i==1){
-            tv.setText( 2+ "");
+            tv.setText("根据教师评价");
             Log.d("---------------------------------------------------------------------------------------",2+"");
         }
 
