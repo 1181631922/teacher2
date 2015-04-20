@@ -4,17 +4,24 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
+import android.widget.ImageButton;
 
 import cn.edu.sjzc.teacher.R;
 
-public class MyRankingInfoActivity extends BaseActivity {
-
+public class MyRankingInfoActivity extends BaseActivity implements View.OnClickListener{
+private ImageButton my_ranking_info_back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_my_ranking_info);
+        initView();
+    }
+    private void initView(){
+        this.my_ranking_info_back=(ImageButton)MyRankingInfoActivity.this.findViewById(R.id.my_ranking_info_back);
+        this.my_ranking_info_back.setOnClickListener(this);
     }
 
 
@@ -38,5 +45,15 @@ public class MyRankingInfoActivity extends BaseActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.my_ranking_info_back:
+                finish();
+                break;
+        }
+
     }
 }
