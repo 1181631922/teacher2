@@ -5,9 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.os.Vibrator;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -37,7 +39,7 @@ import cn.edu.sjzc.teacher.view.StudentSideBarView;
 import cn.edu.sjzc.teacher.view.StudentSideBarView.OnTouchingLetterChangedListener;
 
 public class FindStudentFragment extends BaseFragment implements
-        OnTouchingLetterChangedListener, View.OnClickListener {
+        OnTouchingLetterChangedListener, View.OnClickListener ,SensorEventListener {
 
     public static BaseFragment newInstance(int index) {
         BaseFragment fragment = new FindStudentFragment();
@@ -59,8 +61,8 @@ public class FindStudentFragment extends BaseFragment implements
     private Button find_teacher;
 
     private OverlayThread overlayThread = new OverlayThread();
-    private SensorManager sensorManager;
-    private Vibrator vibrator;
+    private SensorManager mSensorManager;
+    private Vibrator mVibrator;
     //传感系数
     private final int ROCKPOWER = 15;
 
@@ -78,14 +80,14 @@ public class FindStudentFragment extends BaseFragment implements
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-//        initRock();
+        initRock();
         init();
         initView();
 
     }
     private void initRock(){
-        sensorManager=(SensorManager)getActivity().getSystemService(Context.SENSOR_SERVICE);
-        vibrator=(Vibrator)getActivity().getSystemService(Service.VIBRATOR_SERVICE);
+        mSensorManager=(SensorManager)getActivity().getSystemService(Context.SENSOR_SERVICE);
+        mVibrator=(Vibrator)getActivity().getSystemService(Service.VIBRATOR_SERVICE);
     }
 
     private void initView() {
@@ -110,32 +112,81 @@ public class FindStudentFragment extends BaseFragment implements
         super.onCreate(savedInstanceState);
     }
 
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//        sensorManager.registerListener(getActivity().this, sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),SensorManager.SENSOR_DELAY_FASTEST);
-//
-//    }
-//    @Override
-//    public void onStop() {
-//        sensorManager.unregisterListener(getActivity());// 退出界面后，把传感器释放。
-//        super.onStop();
-//    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mSensorManager != null) {// 注册监听器
+            mSensorManager.registerListener(sensorEventListener, mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_GAME);
+            // 第一个参数是Listener，第二个参数是所得传感器类型，第三个参数值获取传感器信息的频率
+        }
+    }
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mSensorManager != null) {// 取消监听器
+            mSensorManager.unregisterListener(sensorEventListener);
+        }
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+        // TODO Auto-generated method stub
+
+    }
 
 
-//    private void onSensorChanged(SensorEvent event) {
-//        int sensorType = event.sensor.getType();
-//        float[] values = event.values;
-//        if (sensorType == Sensor.TYPE_ACCELEROMETER) {
-//            if ((Math.abs(values[0]) > ROCKPOWER || Math.abs(values[1]) > ROCKPOWER || Math.abs(values[2]) > ROCKPOWER)) {
-//                System.out.println("YYYYYYYYYYYY   Math.abs(values[0]=" + Math.abs(values[0]) + "     Math.abs(values[1]=" + Math.abs(values[1]) + "       Math.abs(values[2]" + Math.abs(values[2]));
-//                vibrator.vibrate(500);// 设置震动。
-//                Toast.makeText(getActivity(), "你丫再摇一下试试~~~~！！", Toast.LENGTH_SHORT).show();
-//            }
-//        }
-//    }
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+
+    }
 
 
+
+    /**
+     * 重力感应监听
+     */
+    private SensorEventListener sensorEventListener = new SensorEventListener() {
+
+        @Override
+        public void onSensorChanged(SensorEvent event) {
+            // 传感器信息改变时执行该方法
+            float[] values = event.values;
+            float x = values[0]; // x轴方向的重力加速度，向右为正
+            float y = values[1]; // y轴方向的重力加速度，向前为正
+            float z = values[2]; // z轴方向的重力加速度，向上为正
+            // 一般在这三个方向的重力加速度达到40就达到了摇晃手机的状态。
+            int medumValue = 19;// 如果不敏感请自行调低该数值,低于10的话就不行了,因为z轴上的加速度本身就已经达到10了
+            if (Math.abs(x) > medumValue || Math.abs(y) > medumValue || Math.abs(z) > medumValue) {
+                mVibrator.vibrate(200);
+                Message msg = new Message();
+                msg.what = ROCKPOWER;
+                handler.sendMessage(msg);
+            }
+        }
+
+        @Override
+        public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+        }
+    };
+
+    /**
+     * 动作执行
+     */
+    Handler handler = new Handler() {
+
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case ROCKPOWER:
+                    Toast.makeText(getActivity(), "检测到摇晃，执行操作！", Toast.LENGTH_SHORT).show();
+//                    Refresh();
+                    break;
+            }
+        }
+
+    };
 
     @Override
     public void onTouchingLetterChanged(String s) {
@@ -235,6 +286,7 @@ public class FindStudentFragment extends BaseFragment implements
             public void onRefresh() {
                 try {
                     Thread.sleep(2000);
+                    Log.d("-----------------------------------------------------------------------------------","onrefresh");
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -269,7 +321,7 @@ public class FindStudentFragment extends BaseFragment implements
 
     }
 
-    private Handler handler = new Handler() {
+    private Handler handler1 = new Handler() {
     };
 
     public int alphaIndexer(String s) {
