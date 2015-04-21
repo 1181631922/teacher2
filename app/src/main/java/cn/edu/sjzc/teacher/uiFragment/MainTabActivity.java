@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
@@ -44,7 +45,6 @@ public class MainTabActivity extends FragmentActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.main_tab_layout);
-
         initView();
     }
 
@@ -127,6 +127,13 @@ public class MainTabActivity extends FragmentActivity implements View.OnClickLis
         // 设置点击外围解散
         dialog.setCanceledOnTouchOutside(true);
         dialog.show();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override

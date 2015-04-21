@@ -1,12 +1,13 @@
 package cn.edu.sjzc.teacher.uiActivity;
 
-import android.app.AlertDialog;
+import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.webkit.WebChromeClient;
@@ -16,42 +17,29 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 
 import cn.edu.sjzc.teacher.R;
+import cn.edu.sjzc.teacher.dialog.AboutDialog;
 import cn.edu.sjzc.teacher.dialog.HomeInfoDialog;
 
-public class HomeInfoActivity extends BaseActivity implements View.OnClickListener{
-    /**
-     * Called when the activity is first created.
-     */
-    WebView wv;
-    ProgressDialog pd;
+public class AboutActivity extends BaseActivity implements View.OnClickListener{
+    private WebView wv;
+    private ProgressDialog pd;
     Handler handler;
     private ProgressBar web_show_progress;
     private ImageButton web_show_back;
-
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);// ȥ��������
-        setContentView(R.layout.web_show);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.activity_about);
         initView();
         initData();// ִ�г�ʼ������
-        loadurl(wv, "http://www.sjzc.edu.cn/col/1270779355718/index.html");
+        loadurl(wv, "http://eqxiu.com/s/4NdsxskD");
     }
 
     private void initView() {
-        this.web_show_progress = (ProgressBar) HomeInfoActivity.this.findViewById(R.id.web_show_progress);
-        this.web_show_back = (ImageButton) HomeInfoActivity.this.findViewById(R.id.web_show_back);
+        this.web_show_progress = (ProgressBar) AboutActivity.this.findViewById(R.id.about_show_progress);
+        this.web_show_back = (ImageButton) AboutActivity.this.findViewById(R.id.about_show_back);
         this.web_show_back.setOnClickListener(this);
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.web_show_back:
-                finish();
-                break;
-
-        }
     }
 
     public void initData() {
@@ -70,7 +58,7 @@ public class HomeInfoActivity extends BaseActivity implements View.OnClickListen
                 super.handleMessage(msg);
             }
         };
-        wv = (WebView) findViewById(R.id.wv);
+        wv = (WebView) findViewById(R.id.about_wv);
         wv.getSettings().setJavaScriptEnabled(true);
         wv.setScrollBarStyle(0);
         wv.setWebViewClient(new WebViewClient() {
@@ -78,7 +66,7 @@ public class HomeInfoActivity extends BaseActivity implements View.OnClickListen
                                                     final String url) {
                 loadurl(view, url);
                 return true;
-            }// ��д�������,��webview����
+            }
 
         });
         wv.setWebChromeClient(new WebChromeClient() {
@@ -103,7 +91,7 @@ public class HomeInfoActivity extends BaseActivity implements View.OnClickListen
     }
 
     public void ConfirmExit() {// �˳�ȷ��
-        HomeInfoDialog dialog=new HomeInfoDialog(this, R.style.mystyle, R.layout.dialog_exit_main);
+        AboutDialog dialog=new AboutDialog(this, R.style.mystyle, R.layout.dialog_about);
         dialog.show();
     }
 
@@ -114,4 +102,36 @@ public class HomeInfoActivity extends BaseActivity implements View.OnClickListen
     }
 
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_about, menu);
+        return true;
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.about_show_back:
+                finish();
+                break;
+
+        }
+    }
 }

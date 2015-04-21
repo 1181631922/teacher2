@@ -70,7 +70,7 @@ public class HomeExchangeActivity extends BaseActivity implements View.OnClickLi
                             break;
                         case 1:
 //						pd.hide();// ���ؽ�ȶԻ��򣬲���ʹ��dismiss()��cancel(),�����ٴε���show()ʱ����ʾ�ĶԻ���СԲȦ���ᶯ��
-                            web_show_progress.showContextMenu();
+                            web_show_progress.setVisibility(View.GONE);
                             break;
                     }
                 }
