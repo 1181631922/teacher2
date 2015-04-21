@@ -94,7 +94,7 @@ public class TeacherRankingActivity extends BaseActivity implements View.OnClick
     protected void onResume() {
         super.onResume();
         if (mSensorManager != null) {// 注册监听器
-            mSensorManager.registerListener(sensorEventListener, mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL);
+            mSensorManager.registerListener(sensorEventListener, mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_GAME);
             // 第一个参数是Listener，第二个参数是所得传感器类型，第三个参数值获取传感器信息的频率
         }
     }
