@@ -1,8 +1,14 @@
 package cn.edu.sjzc.teacher.uiFragment;
 
+import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +18,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -52,6 +59,11 @@ public class FindStudentFragment extends BaseFragment implements
     private Button find_teacher;
 
     private OverlayThread overlayThread = new OverlayThread();
+    private SensorManager sensorManager;
+    private Vibrator vibrator;
+    //传感系数
+    private final int ROCKPOWER = 15;
+
 
     // public String[] userinfoArray;
 
@@ -66,10 +78,14 @@ public class FindStudentFragment extends BaseFragment implements
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
+//        initRock();
         init();
         initView();
 
+    }
+    private void initRock(){
+        sensorManager=(SensorManager)getActivity().getSystemService(Context.SENSOR_SERVICE);
+        vibrator=(Vibrator)getActivity().getSystemService(Service.VIBRATOR_SERVICE);
     }
 
     private void initView() {
@@ -93,6 +109,33 @@ public class FindStudentFragment extends BaseFragment implements
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
     }
+
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        sensorManager.registerListener(getActivity().this, sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),SensorManager.SENSOR_DELAY_FASTEST);
+//
+//    }
+//    @Override
+//    public void onStop() {
+//        sensorManager.unregisterListener(getActivity());// 退出界面后，把传感器释放。
+//        super.onStop();
+//    }
+
+
+//    private void onSensorChanged(SensorEvent event) {
+//        int sensorType = event.sensor.getType();
+//        float[] values = event.values;
+//        if (sensorType == Sensor.TYPE_ACCELEROMETER) {
+//            if ((Math.abs(values[0]) > ROCKPOWER || Math.abs(values[1]) > ROCKPOWER || Math.abs(values[2]) > ROCKPOWER)) {
+//                System.out.println("YYYYYYYYYYYY   Math.abs(values[0]=" + Math.abs(values[0]) + "     Math.abs(values[1]=" + Math.abs(values[1]) + "       Math.abs(values[2]" + Math.abs(values[2]));
+//                vibrator.vibrate(500);// 设置震动。
+//                Toast.makeText(getActivity(), "你丫再摇一下试试~~~~！！", Toast.LENGTH_SHORT).show();
+//            }
+//        }
+//    }
+
+
 
     @Override
     public void onTouchingLetterChanged(String s) {
@@ -182,7 +225,11 @@ public class FindStudentFragment extends BaseFragment implements
         Arrays.sort(userinfoArray);
 
         studentUserBeans = Arrays.asList(userinfoArray);
+        Refresh();
 
+    }
+
+    private void Refresh() {
         refreshableView.setOnRefreshListener(new RefreshableView.PullToRefreshListener() {
             @Override
             public void onRefresh() {
