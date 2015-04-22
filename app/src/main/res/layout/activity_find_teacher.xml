@@ -105,7 +105,6 @@
             android:id="@+id/find_teacher_listview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:divider="#C0C0C0"
             android:descendantFocusability="blocksDescendants"
             android:fadingEdge="none" />
 
