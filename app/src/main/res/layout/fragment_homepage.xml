@@ -16,7 +16,7 @@
 
         <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:gravity="center_horizontal" >
 
             <TextView
@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:paddingBottom="7dp"
-                android:paddingTop="7dp"
+                android:paddingTop="10dp"
                 android:text="首页"
                 android:textColor="#ffffff"
                 android:textSize="14sp" />
@@ -186,17 +186,13 @@
 
             <View
                 android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_height="1px"
                 android:layout_marginTop="0dp"
                 android:background="#C0C0C0" />
 
             <View
                 android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_height="1px"
                 android:layout_marginTop="15dp"
                 android:background="#C0C0C0" />
 
@@ -253,9 +249,7 @@
 
             <View
                 android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_height="1px"
                 android:layout_marginTop="0dp"
                 android:background="#C0C0C0" />
 
@@ -320,9 +314,7 @@
 
             <View
                 android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_height="1px"
                 android:layout_marginTop="0dp"
                 android:background="#C0C0C0" />
 

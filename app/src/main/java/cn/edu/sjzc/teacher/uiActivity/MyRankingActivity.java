@@ -67,6 +67,7 @@ public class MyRankingActivity extends BaseActivity implements View.OnClickListe
     public void viewInit() {
         mListView = (HorizontalListView) findViewById(R.id.listview);
         myRankingAdapter = new MyRankingAdapter(context);
+        //另一种加载方式，可以完成下拉刷新
         data = new ArrayList<MyRankingBean>();
 
         for (int i = 0; i < knowledgename.length; i++) {
@@ -94,6 +95,7 @@ public class MyRankingActivity extends BaseActivity implements View.OnClickListe
     @Override
     protected void onResume() {
         super.onResume();
+        // 因为Android版本问题，不得不用最新的方法，不然根本编译不过去
         if (mSensorManager != null) {// 注册监听器
             mSensorManager.registerListener(sensorEventListener, mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_GAME);
             // 第一个参数是Listener，第二个参数是所得传感器类型，第三个参数值获取传感器信息的频率

@@ -3,5 +3,5 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:background="@drawable/feature_guide_0">
+    android:background="@drawable/guide_0">
 </LinearLayout>
