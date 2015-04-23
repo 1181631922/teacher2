@@ -28,6 +28,7 @@ import cn.edu.sjzc.teacher.uiActivity.HomeExchangeActivity;
 import cn.edu.sjzc.teacher.uiActivity.HomeInfoActivity;
 import cn.edu.sjzc.teacher.uiActivity.HomeNewsActivity;
 import cn.edu.sjzc.teacher.uiActivity.LoginActivity;
+import cn.edu.sjzc.teacher.uiActivity.RetroactionActivity;
 
 public class HomePageFragment extends BaseFragment {
 
@@ -115,7 +116,7 @@ public class HomePageFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                Intent it = new Intent(getActivity(), HomeExchangeActivity.class);
+                Intent it = new Intent(getActivity(), RetroactionActivity.class);
                 HomePageFragment.this.startActivity(it);
             }
         });
