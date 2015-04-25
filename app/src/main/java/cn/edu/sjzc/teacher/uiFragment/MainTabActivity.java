@@ -26,19 +26,15 @@ import cn.edu.sjzc.teacher.uiActivity.RetroactionActivity;
 public class MainTabActivity extends FragmentActivity implements View.OnClickListener{
     private FragmentTabHost mTabHost;
 
-    //����һ������
     private LayoutInflater layoutInflater;
     private MainExitDialog dialog1;
     private Dialog dialog;
 
-    //�������������Fragment����
     private Class fragmentArray[] = {HomePageFragment.class, FindEvaluationFragment.class, FindAdviceFragment.class, FindStudentFragment.class, PersonalCenterFragment.class};
 
-    //������������Ű�ťͼƬ
     private int mImageViewArray[] = {R.drawable.tab_home_btn, R.drawable.tab_message_btn, R.drawable.tab_selfinfo_btn,
             R.drawable.tab_square_btn, R.drawable.tab_more_btn};
 
-    //Tabѡ�������
     private String mTextviewArray[] = {"首页", "查看评估", "评价老师", "查找教师", "个人信息"};
 
     public void onCreate(Bundle savedInstanceState) {
@@ -49,31 +45,23 @@ public class MainTabActivity extends FragmentActivity implements View.OnClickLis
     }
 
     /**
-     * ��ʼ�����
      */
     private void initView() {
-        //ʵ��ֶ���
         layoutInflater = LayoutInflater.from(this);
 
-        //ʵ��TabHost���󣬵õ�TabHost
         mTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
         mTabHost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
 
-        //�õ�fragment�ĸ���
         int count = fragmentArray.length;
 
         for (int i = 0; i < count; i++) {
-            //Ϊÿһ��Tab��ť����ͼ�ꡢ���ֺ�����
             TabSpec tabSpec = mTabHost.newTabSpec(mTextviewArray[i]).setIndicator(getTabItemView(i));
-            //��Tab��ť��ӽ�Tabѡ���
             mTabHost.addTab(tabSpec, fragmentArray[i], null);
-            //����Tab��ť�ı���
             mTabHost.getTabWidget().getChildAt(i).setBackgroundResource(R.drawable.selector_tab_background);
         }
     }
 
     /**
-     * ��Tab��ť����ͼ�������
      */
     private View getTabItemView(int index) {
         View view = layoutInflater.inflate(R.layout.tab_item_view, null);

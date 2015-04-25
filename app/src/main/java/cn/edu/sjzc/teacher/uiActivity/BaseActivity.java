@@ -17,6 +17,8 @@ import org.apache.http.params.HttpConnectionParams;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import cn.edu.sjzc.teacher.bean.UserBean;
 
@@ -103,5 +105,11 @@ public class BaseActivity extends Activity {
 		return bitmap;
 
 	}
+
+    public static String getMilliToDate(String time){
+        Date date = new Date(Long.valueOf(time));
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return formatter.format(date);
+    }
 
 }

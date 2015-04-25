@@ -185,4 +185,12 @@
     <color name="color3">#7cc576</color>
     <color name="color4">#6dabde</color>
     <color name="color5">#3d9982 </color>
+
+    <color name="tab_select">#FFFFFF</color>
+    <color name="tab_unselect">#808A87</color>
+    <color name="tab_top_text_1">#aaa</color>
+    <color name="tab_top_text_2">#000</color>
+    <color name="tab_title_normal_color">#262726</color>
+    <color name="tab_title_pressed_color">#16982b</color>
+    <color name="tab_middle_line_color">#5c882c</color>
 </resources>

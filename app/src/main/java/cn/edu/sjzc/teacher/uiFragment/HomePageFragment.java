@@ -6,6 +6,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
@@ -13,20 +17,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import cn.edu.sjzc.teacher.R;
-import cn.edu.sjzc.teacher.uiActivity.HomeExchangeActivity;
 import cn.edu.sjzc.teacher.uiActivity.HomeInfoActivity;
-import cn.edu.sjzc.teacher.uiActivity.HomeNewsActivity;
 import cn.edu.sjzc.teacher.uiActivity.LoginActivity;
 import cn.edu.sjzc.teacher.uiActivity.RetroactionActivity;
 
@@ -43,17 +48,23 @@ public class HomePageFragment extends BaseFragment {
 
     private LinearLayout home_news, home_info, home_exchange;
 
-    int[] images = null;
-    String[] titles = null;
+    private int[] images = null;
+    private String[] titles = null;
 
-    ArrayList<ImageView> imageSource = null;
-    ArrayList<View> dots = null;
-    TextView title = null;
-    ViewPager viewPager;
-    MyPagerAdapter adapter;
+    private ArrayList<ImageView> imageSource = null;
+    private ArrayList<View> dots = null;
+    private TextView title = null,tab1_oneitem, tab1_twoitem, tab1_threeitem, tab1_fouritem;
+    private ViewPager viewPager,viewPagerTab;
+    private MyPagerAdapter adapter;
     private int currPage = 0;
     private int oldPage = 0;
-    View dot1;
+    private View dot1;
+    private int offset = 0;// 动画图片偏移量
+    private int curr = 0;// 当前页卡编号
+    private int bmpW;// 动画图片宽度
+    private ImageView tab1_oneitem_iv, tab1_twoitem_iv, tab1_threeitem_iv, tab1_fouritem_iv;
+    private List<Fragment> fragments;
+    private int selectedColor, unSelectedColor, tabSelectedColor, tabUnSelectedColor;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -72,29 +83,273 @@ public class HomePageFragment extends BaseFragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         init_viewpager();
-        init_view();
+        initView();
+        InitTextView();
+        InitViewPager();
 
 
     }
 
-    public void init_view() {
+    private void InitViewPager() {
+        viewPagerTab = (ViewPager) getActivity().findViewById(R.id.viewPagerTab);
+        Fragment oneItemFragment = new OneItemFragment();
+        Fragment twoItemFragment = new TwoItemFragment();
+        Fragment fourItemFragment = new FourItemFragment();
+        Fragment threeItemFragment = new ThreeItemFragment();
+
+        fragments = new ArrayList<Fragment>();
+        fragments.add(oneItemFragment);
+        fragments.add(twoItemFragment);
+        fragments.add(fourItemFragment);
+
+        fragments.add(threeItemFragment);
+
+        viewPagerTab.setAdapter(new tabPagerAdapter(getChildFragmentManager(), fragments));
+        viewPagerTab.setCurrentItem(0);
+        viewPagerTab.setOnPageChangeListener(new MyOnPageChangeListener());
+    }
+
+    private void InitTextView() {
+        //viewpager
+        this.selectedColor = getActivity().getResources().getColor(R.color.tab_title_pressed_color);
+        this.unSelectedColor = getActivity().getResources().getColor(R.color.tab_title_normal_color);
+        this.tabSelectedColor = getActivity().getResources().getColor(R.color.tab_select);
+        this.tabUnSelectedColor = getActivity().getResources().getColor(R.color.tab_unselect);
+
+        tab1_oneitem = (TextView) getActivity().findViewById(R.id.tab1_oneitem);
+        tab1_twoitem = (TextView) getActivity().findViewById(R.id.tab1_twoitem);
+        tab1_threeitem = (TextView) getActivity().findViewById(R.id.tab1_threeitem);
+        tab1_fouritem = (TextView) getActivity().findViewById(R.id.tab1_fouritem);
+
+        tab1_oneitem_iv = (ImageView) getActivity().findViewById(R.id.tab1_oneitem_iv);
+        tab1_twoitem_iv = (ImageView) getActivity().findViewById(R.id.tab1_twoitem_iv);
+        tab1_threeitem_iv = (ImageView) getActivity().findViewById(R.id.tab1_threeitem_iv);
+        tab1_fouritem_iv = (ImageView) getActivity().findViewById(R.id.tab1_fouritem_iv);
+
+        tab1_oneitem.setTextColor(selectedColor);
+        tab1_twoitem.setTextColor(unSelectedColor);
+        tab1_threeitem.setTextColor(unSelectedColor);
+        tab1_fouritem.setTextColor(unSelectedColor);
+
+        tab1_oneitem_iv.setBackgroundColor(tabSelectedColor);
+        tab1_twoitem_iv.setBackgroundColor(tabUnSelectedColor);
+        tab1_threeitem_iv.setBackgroundColor(tabUnSelectedColor);
+        tab1_fouritem_iv.setBackgroundColor(tabUnSelectedColor);
+
+        tab1_oneitem.setText("计算机系");
+        tab1_twoitem.setText("文传");
+        tab1_threeitem.setText("化工");
+        tab1_fouritem.setText("教育");
+
+        tab1_oneitem.setOnClickListener(new tabOnClickListener(0));
+        tab1_twoitem.setOnClickListener(new tabOnClickListener(1));
+        tab1_threeitem.setOnClickListener(new tabOnClickListener(2));
+        tab1_fouritem.setOnClickListener(new tabOnClickListener(3));
+
+        tab1_oneitem_iv.setOnClickListener(new tabOnClickListener(0));
+        tab1_twoitem_iv.setOnClickListener(new tabOnClickListener(1));
+        tab1_threeitem_iv.setOnClickListener(new tabOnClickListener(2));
+        tab1_fouritem_iv.setOnClickListener(new tabOnClickListener(3));
+    }
+
+
+    public class MyOnPageChangeListener implements OnPageChangeListener {
+        int one = offset * 2 + bmpW;// 页卡1 -> 页卡2 偏移量
+        int two = one * 2;// 页卡1 -> 页卡3 偏移量
+
+
+        public void onPageScrollStateChanged(int index) {
+        }
+
+        public void onPageScrolled(int arg0, float arg1, int arg2) {
+        }
+
+        public void onPageSelected(int index) {
+            Animation animation = new TranslateAnimation(one * curr, one
+                    * index, 0, 0);// 显然这个比较简洁，只有一行代码。
+            curr = index;
+            animation.setFillAfter(true);// True:图片停在动画结束位置
+            animation.setDuration(300);
+
+            switch (index) {
+                case 0:
+                    tab1_oneitem.setTextColor(selectedColor);
+                    tab1_twoitem.setTextColor(unSelectedColor);
+                    tab1_threeitem.setTextColor(unSelectedColor);
+                    tab1_fouritem.setTextColor(unSelectedColor);
+
+                    tab1_oneitem_iv.setBackgroundColor(tabSelectedColor);
+                    tab1_twoitem_iv.setBackgroundColor(tabUnSelectedColor);
+                    tab1_threeitem_iv.setBackgroundColor(tabUnSelectedColor);
+                    tab1_fouritem_iv.setBackgroundColor(tabUnSelectedColor);
+
+                    break;
+                case 1:
+                    tab1_oneitem.setTextColor(unSelectedColor);
+                    tab1_twoitem.setTextColor(selectedColor);
+                    tab1_threeitem.setTextColor(unSelectedColor);
+                    tab1_fouritem.setTextColor(unSelectedColor);
+
+                    tab1_oneitem_iv.setBackgroundColor(tabUnSelectedColor);
+                    tab1_twoitem_iv.setBackgroundColor(tabSelectedColor);
+                    tab1_threeitem_iv.setBackgroundColor(tabUnSelectedColor);
+                    tab1_fouritem_iv.setBackgroundColor(tabUnSelectedColor);
+                    break;
+                case 2:
+                    tab1_oneitem.setTextColor(unSelectedColor);
+                    tab1_twoitem.setTextColor(unSelectedColor);
+                    tab1_threeitem.setTextColor(selectedColor);
+                    tab1_fouritem.setTextColor(unSelectedColor);
+
+                    tab1_oneitem_iv.setBackgroundColor(tabUnSelectedColor);
+                    tab1_twoitem_iv.setBackgroundColor(tabUnSelectedColor);
+                    tab1_threeitem_iv.setBackgroundColor(tabSelectedColor);
+                    tab1_fouritem_iv.setBackgroundColor(tabUnSelectedColor);
+                    break;
+                case 3:
+                    tab1_oneitem.setTextColor(unSelectedColor);
+                    tab1_twoitem.setTextColor(unSelectedColor);
+                    tab1_threeitem.setTextColor(unSelectedColor);
+                    tab1_fouritem.setTextColor(selectedColor);
+
+                    tab1_oneitem_iv.setBackgroundColor(tabUnSelectedColor);
+                    tab1_twoitem_iv.setBackgroundColor(tabUnSelectedColor);
+                    tab1_threeitem_iv.setBackgroundColor(tabUnSelectedColor);
+                    tab1_fouritem_iv.setBackgroundColor(tabSelectedColor);
+                    break;
+            }
+        }
+    }
+
+
+    private class tabOnClickListener implements View.OnClickListener {
+        private int index = 0;
+
+        private tabOnClickListener(int index) {
+            this.index = index;
+        }
+
+        @Override
+        public void onClick(View v) {
+            switch (index) {
+                case 0:
+                    tab1_oneitem.setTextColor(selectedColor);
+                    tab1_twoitem.setTextColor(unSelectedColor);
+                    tab1_threeitem.setTextColor(unSelectedColor);
+                    tab1_fouritem.setTextColor(unSelectedColor);
+
+                    tab1_oneitem_iv.setBackgroundColor(tabSelectedColor);
+                    tab1_twoitem_iv.setBackgroundColor(tabUnSelectedColor);
+                    tab1_threeitem_iv.setBackgroundColor(tabUnSelectedColor);
+                    tab1_fouritem_iv.setBackgroundColor(tabUnSelectedColor);
+
+                    break;
+                case 1:
+                    tab1_oneitem.setTextColor(unSelectedColor);
+                    tab1_twoitem.setTextColor(selectedColor);
+                    tab1_threeitem.setTextColor(unSelectedColor);
+                    tab1_fouritem.setTextColor(unSelectedColor);
+
+                    tab1_oneitem_iv.setBackgroundColor(tabUnSelectedColor);
+                    tab1_twoitem_iv.setBackgroundColor(tabSelectedColor);
+                    tab1_threeitem_iv.setBackgroundColor(tabUnSelectedColor);
+                    tab1_fouritem_iv.setBackgroundColor(tabUnSelectedColor);
+                    break;
+                case 2:
+                    tab1_oneitem.setTextColor(unSelectedColor);
+                    tab1_twoitem.setTextColor(unSelectedColor);
+                    tab1_threeitem.setTextColor(selectedColor);
+                    tab1_fouritem.setTextColor(unSelectedColor);
+
+                    tab1_oneitem_iv.setBackgroundColor(tabUnSelectedColor);
+                    tab1_twoitem_iv.setBackgroundColor(tabUnSelectedColor);
+                    tab1_threeitem_iv.setBackgroundColor(tabSelectedColor);
+                    tab1_fouritem_iv.setBackgroundColor(tabUnSelectedColor);
+                    break;
+                case 3:
+                    tab1_oneitem.setTextColor(unSelectedColor);
+                    tab1_twoitem.setTextColor(unSelectedColor);
+                    tab1_threeitem.setTextColor(unSelectedColor);
+                    tab1_fouritem.setTextColor(selectedColor);
+
+                    tab1_oneitem_iv.setBackgroundColor(tabUnSelectedColor);
+                    tab1_twoitem_iv.setBackgroundColor(tabUnSelectedColor);
+                    tab1_threeitem_iv.setBackgroundColor(tabUnSelectedColor);
+                    tab1_fouritem_iv.setBackgroundColor(tabSelectedColor);
+                    break;
+            }
+            viewPagerTab.setCurrentItem(index);
+
+        }
+    }
+
+    class tabPagerAdapter extends FragmentPagerAdapter {
+        private List<Fragment> fragmentList;
+        private FragmentManager fragmentManager;
+
+        /**
+         * 这个构造方法是必须写的
+         * 而且必须要重写getitem方法
+         *
+         * @param fragmentManager
+         * @param fragmentList
+         */
+        public tabPagerAdapter(FragmentManager fragmentManager, List<Fragment> fragmentList) {
+            super(fragmentManager);
+            this.fragmentManager = fragmentManager;
+            this.fragmentList = fragmentList;
+        }
+
+        public void setFragments(ArrayList<Fragment> fragments) {
+            if (this.fragmentList != null) {
+                FragmentTransaction ft = fragmentManager.beginTransaction();
+                for (Fragment f : this.fragmentList) {
+                    ft.remove(f);
+                }
+                ft.commit();
+                ft = null;
+                fragmentManager.executePendingTransactions();
+            }
+            this.fragmentList = fragments;
+            notifyDataSetChanged();
+        }
+
+        @Override
+        public int getItemPosition(Object object) {
+            return POSITION_NONE;
+        }
+
+        @Override
+        public Fragment getItem(int i) {
+            return fragmentList.get(i);
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return null;
+        }
+
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+            return super.instantiateItem(container, position);
+        }
+
+        @Override
+        public int getCount() {
+            return fragmentList.size();
+        }
+
+
+    }
+
+
+    public void initView() {
         View dot1 = (View) getActivity().findViewById(R.id.dot1);
         dot1.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 Intent it = new Intent(getActivity(), LoginActivity.class);
-                HomePageFragment.this.startActivity(it);
-            }
-        });
-
-        LinearLayout home_news = (LinearLayout) getActivity().findViewById(R.id.home_news);
-        home_news.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                Intent it = new Intent(getActivity(), HomeNewsActivity.class);
                 HomePageFragment.this.startActivity(it);
             }
         });
