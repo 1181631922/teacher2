@@ -19,20 +19,23 @@ import android.widget.ProgressBar;
 import cn.edu.sjzc.teacher.R;
 import cn.edu.sjzc.teacher.dialog.AboutDialog;
 import cn.edu.sjzc.teacher.dialog.HomeInfoDialog;
+import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.onekeyshare.OnekeyShare;
 
-public class AboutActivity extends BaseActivity implements View.OnClickListener{
+public class AboutActivity extends BaseActivity implements View.OnClickListener {
     private WebView wv;
     private ProgressDialog pd;
     Handler handler;
     private ProgressBar web_show_progress;
-    private ImageButton web_show_back;
+    private ImageButton web_show_back, about_show_share;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_about);
         initView();
-        initData();// ִ�г�ʼ������
+        initData();
         loadurl(wv, "http://eqxiu.com/s/4NdsxskD");
     }
 
@@ -40,6 +43,8 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener{
         this.web_show_progress = (ProgressBar) AboutActivity.this.findViewById(R.id.about_show_progress);
         this.web_show_back = (ImageButton) AboutActivity.this.findViewById(R.id.about_show_back);
         this.web_show_back.setOnClickListener(this);
+        this.about_show_share=(ImageButton)this.findViewById(R.id.about_show_share);
+        this.about_show_share.setOnClickListener(this);
     }
 
     public void initData() {
@@ -91,7 +96,7 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener{
     }
 
     public void ConfirmExit() {// �˳�ȷ��
-        AboutDialog dialog=new AboutDialog(this, R.style.mystyle, R.layout.dialog_about);
+        AboutDialog dialog = new AboutDialog(this, R.style.mystyle, R.layout.dialog_about);
         dialog.show();
     }
 
@@ -131,7 +136,39 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener{
             case R.id.about_show_back:
                 finish();
                 break;
-
+            case R.id.about_show_share :
+                showShare();
+                break;
         }
+    }
+
+    private void showShare() {
+        ShareSDK.initSDK(this);
+        OnekeyShare oks = new OnekeyShare();
+        // 关闭sso授权
+        oks.disableSSOWhenAuthorize();
+
+        // 分享时Notification的图标和文字 2.5.9以后的版本不调用此方法
+        // oks.setNotification(R.drawable.ic_launcher,
+        // getString(R.string.app_name));
+        // title标题，印象笔记、邮箱、信息、微信、人人网和QQ空间使用
+        oks.setTitle(getString(R.string.share));
+        // titleUrl是标题的网络链接，仅在人人网和QQ空间使用
+        oks.setTitleUrl("http://eqxiu.com/s/4NdsxskD");
+        // text是分享文本，所有平台都需要这个字段
+        oks.setText("樊亚风测试分享文本");
+        // imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
+        oks.setImagePath("/sdcard/fanyafeng/fanyafeng.png");// 确保SDcard下面存在此张图片
+        // url仅在微信（包括好友和朋友圈）中使用
+        oks.setUrl("http://eqxiu.com/s/4NdsxskD");
+        // comment是我对这条分享的评论，仅在人人网和QQ空间使用
+        oks.setComment("樊亚风测试评论文本");
+        // site是分享此内容的网站名称，仅在QQ空间使用
+        oks.setSite(getString(R.string.app_name));
+        // siteUrl是分享此内容的网站地址，仅在QQ空间使用
+        oks.setSiteUrl("http://eqxiu.com/s/4NdsxskD");
+
+        // 启动分享GUI
+        oks.show(this);
     }
 }

@@ -4,9 +4,19 @@
     android:versionCode="1"
     android:versionName="1.0" >
 
+    <!--sharedsdk分享需要的权限-->
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+
     <!-- 震动感应器 -->
     <uses-permission android:name="android.permission.VIBRATE" />
-
     <!-- SDCard中创建与删除文件权限 -->
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <!-- SDCard写入数据权限 -->
@@ -14,7 +24,6 @@
     <!-- 联网权限 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <!-- 拨号权限 -->
     <android:uses-permission android:name="android.permission.CALL_PHONE" />
@@ -25,7 +34,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".uiActivity.GuideActivity"
+            android:name="cn.edu.sjzc.teacher.uiActivity.GuideActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,87 +42,109 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--分享必加-->
         <activity
-            android:name=".uiActivity.AppStartActivicy"
+            android:name="cn.sharesdk.framework.ShareSDKUIShell"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize">
+            <intent-filter>
+                <data android:scheme="tencent100371282" />
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <!--微信分享回调 -->
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".uiFragment.MainTabActivity"
+            android:name="cn.edu.sjzc.teacher.uiActivity.AppStartActivicy"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".uiActivity.SignActivity"
+            android:name="cn.edu.sjzc.teacher.uiFragment.MainTabActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".uiActivity.LoginActivity"
+            android:name="cn.edu.sjzc.teacher.uiActivity.SignActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".uiActivity.HomeNewsActivity"
+            android:name="cn.edu.sjzc.teacher.uiActivity.LoginActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".uiActivity.HomeInfoActivity"
+            android:name="cn.edu.sjzc.teacher.uiActivity.HomeNewsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".uiActivity.HomeExchangeActivity"
+            android:name="cn.edu.sjzc.teacher.uiActivity.HomeInfoActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".uiActivity.PerChangeInfoActivity"
+            android:name="cn.edu.sjzc.teacher.uiActivity.HomeExchangeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".uiActivity.PerChangePasswordActivity"
+            android:name="cn.edu.sjzc.teacher.uiActivity.PerChangeInfoActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".uiActivity.PerPersonalInfoActivity"
+            android:name="cn.edu.sjzc.teacher.uiActivity.PerChangePasswordActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".uiActivity.PerScheduleActivity"
+            android:name="cn.edu.sjzc.teacher.uiActivity.PerPersonalInfoActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".uiActivity.TeacherRankingActivity"
+            android:name="cn.edu.sjzc.teacher.uiActivity.PerScheduleActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".uiActivity.MyRankingActivity"
+            android:name="cn.edu.sjzc.teacher.uiActivity.TeacherRankingActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".uiActivity.AdvStudentInfoActivity"
+            android:name="cn.edu.sjzc.teacher.uiActivity.MyRankingActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".uiActivity.FindTeacherActivity"
+            android:name="cn.edu.sjzc.teacher.uiActivity.AdvteacherInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="cn.edu.sjzc.teacher.uiActivity.FindTeacherActivity"
             android:label="@string/title_activity_find_teacher"
             android:screenOrientation="portrait" />
 
         <service
-            android:name=".service.ConfirmSoundService"
+            android:name="cn.edu.sjzc.teacher.service.ConfirmSoundService"
             android:exported="true" />
         <service
-            android:name=".service.ExitSoundService"
+            android:name="cn.edu.sjzc.teacher.service.ExitSoundService"
             android:exported="true" />
         <service
-            android:name=".service.LowBatterySoundService"
+            android:name="cn.edu.sjzc.teacher.service.LowBatterySoundService"
             android:exported="true" />
 
-        <receiver android:name=".broadcasterceiver.SoundBroadCasteReceiver" />
+        <receiver android:name="cn.edu.sjzc.teacher.broadcasterceiver.SoundBroadCasteReceiver" />
 
         <activity
-            android:name=".uiActivity.CourseActivity"
+            android:name="cn.edu.sjzc.teacher.uiActivity.CourseActivity"
             android:label="@string/title_activity_course"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".uiActivity.MyRankingInfoActivity"
+            android:name="cn.edu.sjzc.teacher.uiActivity.MyRankingInfoActivity"
             android:label="@string/title_activity_my_ranking_info"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".uiActivity.TeacherRankingInfoActivity"
+            android:name="cn.edu.sjzc.teacher.uiActivity.TeacherRankingInfoActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".uiActivity.RetroactionActivity"
+            android:name="cn.edu.sjzc.teacher.uiActivity.RetroactionActivity"
             android:label="@string/title_activity_retroaction" />
         <activity
-            android:name=".uiActivity.SearchInfoActivity"
+            android:name="cn.edu.sjzc.teacher.uiActivity.SearchInfoActivity"
             android:label="@string/title_activity_search_info" />
         <activity
-            android:name=".uiActivity.AboutActivity"
+            android:name="cn.edu.sjzc.teacher.uiActivity.AboutActivity"
             android:label="@string/title_activity_about" />
         <activity
-            android:name=".uiActivity.EvealuationActivity"
+            android:name="cn.edu.sjzc.teacher.uiActivity.EvealuationActivity"
             android:label="@string/title_activity_evealuation" >
         </activity>
     </application>
