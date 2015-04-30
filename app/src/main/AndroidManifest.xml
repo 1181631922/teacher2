@@ -104,7 +104,7 @@
             android:name="cn.edu.sjzc.teacher.uiActivity.MyRankingActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="cn.edu.sjzc.teacher.uiActivity.AdvteacherInfoActivity"
+            android:name="cn.edu.sjzc.teacher.uiActivity.AdvStudentInfoActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name="cn.edu.sjzc.teacher.uiActivity.FindTeacherActivity"
