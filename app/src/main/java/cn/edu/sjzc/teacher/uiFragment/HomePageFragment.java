@@ -53,8 +53,8 @@ public class HomePageFragment extends BaseFragment {
 
     private ArrayList<ImageView> imageSource = null;
     private ArrayList<View> dots = null;
-    private TextView title = null,tab1_oneitem, tab1_twoitem, tab1_threeitem, tab1_fouritem;
-    private ViewPager viewPager,viewPagerTab;
+    private TextView title = null, tab1_oneitem, tab1_twoitem, tab1_threeitem, tab1_fouritem;
+    private ViewPager viewPager, viewPagerTab;
     private MyPagerAdapter adapter;
     private int currPage = 0;
     private int oldPage = 0;
@@ -65,6 +65,7 @@ public class HomePageFragment extends BaseFragment {
     private ImageView tab1_oneitem_iv, tab1_twoitem_iv, tab1_threeitem_iv, tab1_fouritem_iv;
     private List<Fragment> fragments;
     private int selectedColor, unSelectedColor, tabSelectedColor, tabUnSelectedColor;
+//    private ImageView redpoint;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -344,6 +345,8 @@ public class HomePageFragment extends BaseFragment {
 
 
     public void initView() {
+//this.redpoint=(ImageView)getActivity().findViewById(R.id.redpoint);
+//        this.redpoint.setVisibility(View.VISIBLE);
         View dot1 = (View) getActivity().findViewById(R.id.dot1);
         dot1.setOnClickListener(new OnClickListener() {
 
@@ -431,11 +434,8 @@ public class HomePageFragment extends BaseFragment {
 
                         Toast.makeText(getActivity(), "数信学院", 1000).show();
                     }
-
-
                 }
             });
-
         }
 
         dots = new ArrayList<View>();
@@ -546,4 +546,10 @@ public class HomePageFragment extends BaseFragment {
 
         ;
     };
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+//        this.redpoint.setVisibility(View.GONE);
+    }
 }

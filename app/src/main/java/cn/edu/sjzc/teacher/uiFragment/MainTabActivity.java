@@ -2,6 +2,7 @@ package cn.edu.sjzc.teacher.uiFragment;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TabHost.TabSpec;
 import android.widget.TextView;
@@ -20,15 +22,18 @@ import android.widget.TextView;
 import cn.edu.sjzc.teacher.R;
 import cn.edu.sjzc.teacher.dialog.MainExitDialog;
 import cn.edu.sjzc.teacher.uiActivity.RetroactionActivity;
+import cn.edu.sjzc.teacher.view.BadgeView;
 
 /**
  */
-public class MainTabActivity extends FragmentActivity implements View.OnClickListener{
+public class MainTabActivity extends FragmentActivity implements View.OnClickListener {
     private FragmentTabHost mTabHost;
 
     private LayoutInflater layoutInflater;
     private MainExitDialog dialog1;
     private Dialog dialog;
+    public Button button;
+
 
     private Class fragmentArray[] = {HomePageFragment.class, FindEvaluationFragment.class, FindAdviceFragment.class, FindStudentFragment.class, PersonalCenterFragment.class};
 
@@ -48,33 +53,40 @@ public class MainTabActivity extends FragmentActivity implements View.OnClickLis
      */
     private void initView() {
         layoutInflater = LayoutInflater.from(this);
-
         mTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
         mTabHost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
-
         int count = fragmentArray.length;
-
         for (int i = 0; i < count; i++) {
             TabSpec tabSpec = mTabHost.newTabSpec(mTextviewArray[i]).setIndicator(getTabItemView(i));
             mTabHost.addTab(tabSpec, fragmentArray[i], null);
             mTabHost.getTabWidget().getChildAt(i).setBackgroundResource(R.drawable.selector_tab_background);
         }
+//        button =(Button)findViewById(R.id.redpoint);
+//        remind(button);
     }
 
-    /**
-     */
+//    private void remind(View view) { //BadgeView的具体使用
+//        BadgeView badge1 = new BadgeView(this, button);// 创建一个BadgeView对象，view为你需要显示提醒的控件
+//        badge1.setText("12"); // 需要显示的提醒类容
+//        badge1.setBadgePosition(BadgeView.POSITION_TOP_RIGHT);// 显示的位置.右上角,BadgeView.POSITION_BOTTOM_LEFT,下左，还有其他几个属性
+//        badge1.setTextColor(Color.WHITE); // 文本颜色
+//        badge1.setBadgeBackgroundColor(Color.RED); // 提醒信息的背景颜色，自己设置
+//        badge1.setTextSize(12); // 文本大小
+//        //badge1.setBadgeMargin(3, 3); // 水平和竖直方向的间距
+//        badge1.setBadgeMargin(5); //各边间隔
+//        // badge1.toggle(); //显示效果，如果已经显示，则影藏，如果影藏，则显示
+//        badge1.show();// 只有显示
+//        // badge1.hide();//影藏显示
+//    }
+
     private View getTabItemView(int index) {
         View view = layoutInflater.inflate(R.layout.tab_item_view, null);
-
         ImageView imageView = (ImageView) view.findViewById(R.id.imageview);
         imageView.setImageResource(mImageViewArray[index]);
-
         TextView textView = (TextView) view.findViewById(R.id.textview);
         textView.setText(mTextviewArray[index]);
-
         return view;
     }
-
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode) {
@@ -85,7 +97,6 @@ public class MainTabActivity extends FragmentActivity implements View.OnClickLis
                 showDialog();
                 break;
         }
-
         return super.onKeyDown(keyCode, event);
     }
 
@@ -135,19 +146,19 @@ public class MainTabActivity extends FragmentActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.main_tab_retroaction:
                 Intent it_retroaction = new Intent(MainTabActivity.this, RetroactionActivity.class);
                 startActivity(it_retroaction);
                 dialog.dismiss();
-            break;
+                break;
             case R.id.main_tab_exit:
                 finish();
                 dialog.dismiss();
-            break;
+                break;
             case R.id.main_tab_cancel:
                 dialog.dismiss();
-            break;
+                break;
         }
     }
 }

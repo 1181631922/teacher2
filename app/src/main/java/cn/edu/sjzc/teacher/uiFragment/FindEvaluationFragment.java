@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import cn.edu.sjzc.teacher.R;
 import cn.edu.sjzc.teacher.uiActivity.EvealuationActivity;
@@ -25,6 +26,7 @@ public class FindEvaluationFragment extends BaseFragment implements OnClickListe
     }
 
     private Button eva_evaluation_but, eva_score_but, eva_otherteacher_but;
+    private ImageView redpoint;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,17 +43,13 @@ public class FindEvaluationFragment extends BaseFragment implements OnClickListe
     }
 
     private void init() {
-
-        Button eva_evaluation_but = (Button) getActivity().findViewById(
-                R.id.eva_evaluation_but);
+//        this.redpoint = (ImageView) getActivity().findViewById(R.id.redpoint);
+//        this.redpoint.setVisibility(View.GONE);
+        Button eva_evaluation_but = (Button) getActivity().findViewById(R.id.eva_evaluation_but);
         eva_evaluation_but.setOnClickListener(this);
-
-        Button eva_score_but = (Button) getActivity().findViewById(
-                R.id.eva_score_but);
+        Button eva_score_but = (Button) getActivity().findViewById(R.id.eva_score_but);
         eva_score_but.setOnClickListener(this);
-
-        Button eva_otherteacher_but = (Button) getActivity().findViewById(
-                R.id.eva_otherteacher_but);
+        Button eva_otherteacher_but = (Button) getActivity().findViewById(R.id.eva_otherteacher_but);
         eva_otherteacher_but.setOnClickListener(this);
 
     }

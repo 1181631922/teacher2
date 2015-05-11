@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import cn.edu.sjzc.teacher.R;
 
@@ -22,6 +23,7 @@ public class FindAdviceFragment extends BaseFragment implements View.OnClickList
 
     private View layoutView;
     private FragmentTabHost mTabHost;
+    private ImageView redpoint;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,8 @@ public class FindAdviceFragment extends BaseFragment implements View.OnClickList
         layoutView.findViewById(R.id.button1).setOnClickListener(this);
         layoutView.findViewById(R.id.button1).setSelected(true);
         layoutView.findViewById(R.id.button2).setOnClickListener(this);
+//        this.redpoint=(ImageView)getActivity().findViewById(R.id.redpoint);
+//        this.redpoint.setVisibility(View.GONE);
 
         if (savedInstanceState == null) {
             BaseFragment fragment = (BaseFragment) getChildFragmentManager()

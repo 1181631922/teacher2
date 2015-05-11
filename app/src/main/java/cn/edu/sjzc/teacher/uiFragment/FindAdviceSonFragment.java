@@ -46,14 +46,20 @@ public class FindAdviceSonFragment extends BaseFragment{
     }
     public void initView(){
          tv = (TextView) layoutView.findViewById(R.id.textView111);
+        textView=(TextView)layoutView.findViewById(R.id.textView222);
     }
 
     public void init(int i){
         if (i==0){
-            tv.setText("根据课程评价");
+//            tv.setText("根据课程评价");
+            textView.setVisibility(View.GONE);
+            tv.setVisibility(View.VISIBLE);
+
             Log.d("---------------------------------------------------------------------------------------",1+"");
         }else if(i==1){
-            tv.setText("根据教师评价");
+//            tv.setText("根据教师评价");
+//            tv.setVisibility(View.GONE);
+            textView.setVisibility(View.VISIBLE);
             Log.d("---------------------------------------------------------------------------------------",2+"");
         }
 

@@ -22,7 +22,21 @@
                 android:id="@+id/textView111"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tab1"
+                android:layout_gravity="center"
+                android:text="我是根据课程评价"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                </ListView>
+
+            <TextView
+                android:id="@+id/textView222"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="我是根据教师评价"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
         </LinearLayout>
     </ScrollView>

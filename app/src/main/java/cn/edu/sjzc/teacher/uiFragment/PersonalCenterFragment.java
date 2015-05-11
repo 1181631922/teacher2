@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import cn.edu.sjzc.teacher.R;
 import cn.edu.sjzc.teacher.uiActivity.AboutActivity;
@@ -28,6 +29,8 @@ public class PersonalCenterFragment extends BaseFragment implements OnClickListe
 
     private Button user_but, per_person_but, per_password_but,
             per_schedule_but, per_about__but;
+    private ImageView redpoint;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,24 +44,20 @@ public class PersonalCenterFragment extends BaseFragment implements OnClickListe
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        init();
+        initView();
 
     }
 
-    public void init() {
+    public void initView() {
+//        this.redpoint = (ImageView) getActivity().findViewById(R.id.redpoint);
+//        this.redpoint.setVisibility(View.GONE);
         Button user_but = (Button) getActivity().findViewById(R.id.user_but);
         user_but.setOnClickListener(this);
-
-        Button per_person_but = (Button) getActivity().findViewById(
-                R.id.per_person_but);
+        Button per_person_but = (Button) getActivity().findViewById(R.id.per_person_but);
         per_person_but.setOnClickListener(this);
-
-        Button per_password_but = (Button) getActivity().findViewById(
-                R.id.per_password_but);
+        Button per_password_but = (Button) getActivity().findViewById(R.id.per_password_but);
         per_password_but.setOnClickListener(this);
-
-        Button per_schedule_but = (Button) getActivity().findViewById(
-                R.id.per_schedule_but);
+        Button per_schedule_but = (Button) getActivity().findViewById(R.id.per_schedule_but);
         per_schedule_but.setOnClickListener(this);
         this.per_about__but = (Button) getActivity().findViewById(R.id.per_about__but);
         this.per_about__but.setOnClickListener(this);
@@ -88,7 +87,7 @@ public class PersonalCenterFragment extends BaseFragment implements OnClickListe
                 PersonalCenterFragment.this.startActivity(it_schedule);
                 break;
             case R.id.per_about__but:
-                Intent it_about=new Intent(getActivity(),AboutActivity.class);
+                Intent it_about = new Intent(getActivity(), AboutActivity.class);
                 startActivity(it_about);
                 break;
 
