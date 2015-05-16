@@ -59,28 +59,6 @@ public class AppStartActivicy extends BaseActivity {
 //        CheckNetworkState();
     }
 
-    public void CheckNetworkState() {
-        boolean flag = false;
-        ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo.State mobile = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE)
-                .getState();
-        NetworkInfo.State wifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI)
-                .getState();
-        // 如果3G、wifi�?G等网络状态是连接的，则�?出，否则显示提示信息进入网络设置界面
-        if (mobile == NetworkInfo.State.CONNECTED || mobile == NetworkInfo.State.CONNECTING || wifi == NetworkInfo.State.CONNECTED || wifi == NetworkInfo.State.CONNECTING) {
-            new Thread(connectNet).start();
-
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    new Thread(saveFileRunnable).start();
-                }
-            }, 5000);
-            return;
-        }
-
-        showTips();
-    }
 
     private void showTips() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
