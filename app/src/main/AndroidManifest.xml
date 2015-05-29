@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cn.edu.sjzc.teacher"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="1.0">
 
     <!--sharedsdk分享需要的权限-->
     <uses-permission android:name="android.permission.GET_TASKS" />
@@ -24,6 +24,7 @@
     <!-- 联网权限 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <!-- 拨号权限 -->
     <android:uses-permission android:name="android.permission.CALL_PHONE" />
@@ -32,10 +33,10 @@
         android:allowBackup="true"
         android:icon="@drawable/icon"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
-            android:name="cn.edu.sjzc.teacher.uiActivity.LoginDemoActivity"
-            android:label="@string/app_name" >
+            android:name="cn.edu.sjzc.teacher.uiActivity.GuideActivity"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -66,6 +67,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name="cn.edu.sjzc.teacher.uiActivity.AppStartActivicy"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="cn.edu.sjzc.teacher.uiActivity.LoginDemoActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name="cn.edu.sjzc.teacher.uiFragment.MainTabActivity"
@@ -136,17 +140,20 @@
             android:screenOrientation="portrait" />
         <activity
             android:name="cn.edu.sjzc.teacher.uiActivity.RetroactionActivity"
-            android:label="@string/title_activity_retroaction" />
+            android:label="@string/title_activity_retroaction"
+            android:screenOrientation="portrait" />
         <activity
             android:name="cn.edu.sjzc.teacher.uiActivity.SearchInfoActivity"
-            android:label="@string/title_activity_search_info" />
+            android:label="@string/title_activity_search_info"
+            android:screenOrientation="portrait" />
         <activity
             android:name="cn.edu.sjzc.teacher.uiActivity.AboutActivity"
-            android:label="@string/title_activity_about" />
+            android:label="@string/title_activity_about"
+            android:screenOrientation="portrait" />
         <activity
             android:name="cn.edu.sjzc.teacher.uiActivity.EvealuationActivity"
-            android:label="@string/title_activity_evealuation" >
-        </activity>
+            android:label="@string/title_activity_evealuation"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

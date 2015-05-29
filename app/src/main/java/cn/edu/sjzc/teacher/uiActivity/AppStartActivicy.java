@@ -38,18 +38,27 @@ public class AppStartActivicy extends BaseActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE); //ȥ��������
-        setContentView(R.layout.activity_appstart); // �󶨲����ļ�
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.activity_appstart);
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(AppStartActivicy.this, MainTabActivity.class);
+                Intent intent = new Intent(AppStartActivicy.this, LoginDemoActivity.class);
                 startActivity(intent);
                 AppStartActivicy.this.finish();
             }
         }, 1000);
+        if (CheckNetworkState()) {
+            new Thread(connectNet).start();
 
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    new Thread(saveFileRunnable).start();
+                }
+            }, 3000);
+        }
 
     }
 

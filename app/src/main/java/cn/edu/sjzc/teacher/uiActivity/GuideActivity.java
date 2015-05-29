@@ -26,17 +26,17 @@ public class GuideActivity extends BaseActivity implements OnTouchListener {
 	private List<View> listView;
 	private List<View> listDots;
 
-	private int thePos = 0; // ��ǰ��View������
+	private int thePos = 0;
 	private int oldPosition;
-	private int count = 0; // �����Ļ�Ĵ���
+	private int count = 0;
 
-	private long firstTime = 0;// ��һ�ε����ʱ��;
-	private long secondTime = 0;// �ڶ��ε����ʱ��
+	private long firstTime = 0;
+	private long secondTime = 0;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);// ȥ��������
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 		if (isFirstStart()) {
 			setTarget();
@@ -52,15 +52,12 @@ public class GuideActivity extends BaseActivity implements OnTouchListener {
 
 	}
 
-	/** �ж��Ƿ��ǵ�һ������ */
 	private boolean isFirstStart() {
 		SharedPreferences share = getSharedPreferences("fs", MODE_PRIVATE);
 		String target = share.getString("isfs", "0");
 		if (target.equals("0")) {
-			// �ǵ�һ������
 			return true;
 		} else {
-			// ���ǵ�һ������
 			return false;
 		}
 	}
@@ -191,7 +188,7 @@ public class GuideActivity extends BaseActivity implements OnTouchListener {
 				secondTime = System.currentTimeMillis();
 				if (secondTime - firstTime > 0) {
 					Intent it = new Intent();
-					it.setClass(this, MainTabActivity.class);
+					it.setClass(this, LoginDemoActivity.class);
 					startActivity(it);
 					finish();
 				}
