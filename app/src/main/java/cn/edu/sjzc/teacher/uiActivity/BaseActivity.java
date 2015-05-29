@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.view.View;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 
@@ -24,11 +25,12 @@ import java.util.Date;
 
 import cn.edu.sjzc.teacher.bean.UserBean;
 
-public class BaseActivity extends Activity {
+public class BaseActivity extends Activity implements View.OnClickListener{
 
     public static final int REQUEST_TIMEOUT = 5 * 1000;// 设置请求超时10秒钟
     public static final int SO_TIMEOUT = 10 * 1000; // 设置等待数据超时时间10秒钟
-    public static String baseUrl = "http://172.16.238.8:8080/st/person!";
+    public static String aBaseUrl="http://172.28.214.3:8080/st/";
+    public static String baseUrl = aBaseUrl+"person!";
     public static String loginUrl = baseUrl+"loginAndroid";
     public static String personInfomationUrl = baseUrl+"findPersonByNumber?number=";
 
@@ -93,4 +95,8 @@ public class BaseActivity extends Activity {
         return formatter.format(date);
     }
 
+    @Override
+    public void onClick(View v) {
+
+    }
 }
