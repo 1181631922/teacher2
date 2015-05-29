@@ -35,7 +35,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name="cn.edu.sjzc.teacher.uiActivity.GuideActivity"
+            android:name=".uiFragment.MainTabActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -71,9 +71,9 @@
         <activity
             android:name="cn.edu.sjzc.teacher.uiActivity.LoginDemoActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name="cn.edu.sjzc.teacher.uiFragment.MainTabActivity"
-            android:screenOrientation="portrait" />
+        <!--<activity-->
+            <!--android:name="cn.edu.sjzc.teacher.uiFragment.MainTabActivity"-->
+            <!--android:screenOrientation="portrait" />-->
         <activity
             android:name="cn.edu.sjzc.teacher.uiActivity.SignActivity"
             android:screenOrientation="portrait" />

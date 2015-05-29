@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="#DCDCDC"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/upmost"
@@ -12,12 +12,12 @@
         android:layout_alignParentTop="true"
         android:layout_gravity="center_horizontal"
         android:background="#4169E1"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="40dp"
-            android:gravity="center_horizontal" >
+            android:gravity="center_horizontal">
 
             <TextView
                 android:id="@+id/first"
@@ -36,17 +36,17 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_below="@id/upmost"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <FrameLayout
                 android:id="@+id/scor"
                 android:layout_width="fill_parent"
-                android:layout_height="180dp" >
+                android:layout_height="180dp">
 
                 <android.support.v4.view.ViewPager
                     android:id="@+id/vp"
@@ -59,7 +59,7 @@
                     android:layout_gravity="bottom"
                     android:background="#20000000"
                     android:gravity="center_horizontal"
-                    android:orientation="vertical" >
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/title"
@@ -75,7 +75,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="3dip"
-                        android:orientation="horizontal" >
+                        android:orientation="horizontal">
 
                         <View
                             android:id="@+id/dot1"
@@ -137,11 +137,11 @@
                 android:layout_gravity="center_horizontal"
                 android:clickable="true"
                 android:focusable="true"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="280dp"
+                    android:layout_height="180dp"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -206,6 +206,7 @@
 
                         <View
                             android:layout_width="1px"
+                            android:visibility="gone"
                             android:layout_height="match_parent"
                             android:layout_gravity="center_vertical"
                             android:background="@color/tab_middle_line_color" />
@@ -213,6 +214,7 @@
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_weight="1"
+                            android:visibility="gone"
                             android:layout_height="match_parent">
 
                             <ImageView
@@ -235,6 +237,7 @@
 
                         <View
                             android:layout_width="1px"
+                            android:visibility="gone"
                             android:layout_height="match_parent"
                             android:layout_gravity="center_vertical"
                             android:background="@color/tab_middle_line_color" />
@@ -242,6 +245,7 @@
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_weight="1"
+                            android:visibility="gone"
                             android:layout_height="match_parent">
 
                             <ImageView
@@ -298,7 +302,7 @@
                 android:background="@drawable/home_linear_selector"
                 android:clickable="true"
                 android:focusable="true"
-                android:orientation="horizontal" >
+                android:orientation="horizontal">
 
                 <ImageView
                     android:id="@+id/home_info_img"
@@ -313,7 +317,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical" >
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/home_info_info"
@@ -361,7 +365,7 @@
                 android:background="@drawable/home_linear_selector"
                 android:clickable="true"
                 android:focusable="true"
-                android:orientation="horizontal" >
+                android:orientation="horizontal">
 
                 <ImageView
                     android:id="@+id/home_exchange_img"
@@ -376,7 +380,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical" >
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/home_exchange_info"
@@ -410,7 +414,7 @@
                 android:layout_marginTop="0dp"
                 android:background="#C0C0C0" />
 
-            
+
         </LinearLayout>
     </ScrollView>
 
