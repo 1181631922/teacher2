@@ -57,7 +57,6 @@ public class LoginDemoActivity extends BaseActivity implements OnClickListener {
 
         initView();
         LoadUserdata();
-
     }
 
     @Override

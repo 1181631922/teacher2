@@ -150,7 +150,8 @@ public class MyCourseActivity extends BaseActivity{
         Map<String, String> map = new LinkedHashMap<String, String>();
         map.put("number", number);
         try {
-            String backMsg = PostUtil.postData(aBaseUrl + "message!getReadedMessageAndroid", map);
+            //可以直接用abase里面的东西
+            String backMsg = PostUtil.postData(getServerURL() + "message!getReadedMessageAndroid", map);
             Log.d("-------teacher-----------", backMsg);
             try {
                 JSONObject jsonObject = new JSONObject(backMsg);
