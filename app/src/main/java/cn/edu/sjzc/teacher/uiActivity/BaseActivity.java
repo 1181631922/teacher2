@@ -25,14 +25,14 @@ import java.util.Date;
 
 import cn.edu.sjzc.teacher.bean.UserBean;
 
-public class BaseActivity extends Activity implements View.OnClickListener{
+public class BaseActivity extends ABaseActivity implements View.OnClickListener{
 
     public static final int REQUEST_TIMEOUT = 5 * 1000;// 设置请求超时10秒钟
     public static final int SO_TIMEOUT = 10 * 1000; // 设置等待数据超时时间10秒钟
-    public static String aBaseUrl="http://172.28.214.3:8080/st/";
-    public static String baseUrl = aBaseUrl+"person!";
-    public static String loginUrl = baseUrl+"loginAndroid";
-    public static String personInfomationUrl = baseUrl+"findPersonByNumber?number=";
+//    public  String aBaseUrl="http://172.28.214.3:8080/st/";
+    public  String baseUrl = aBaseUrl+"person!";
+    public  String loginUrl = baseUrl+"loginAndroid";
+    public  String personInfomationUrl = baseUrl+"findPersonByNumber?number=";
 
     // 初始化HttpClient，并设置超时
     public static HttpClient getHttpClient() {

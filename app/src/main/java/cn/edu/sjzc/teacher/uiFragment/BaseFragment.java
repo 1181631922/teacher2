@@ -5,11 +5,11 @@ import android.support.v4.app.Fragment;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class BaseFragment extends Fragment {
+public class BaseFragment extends ABaseFragment {
 
 	private int index;
-    public static String aBaseUrl="http://172.28.214.3:8080/st/";
-    public static String baseUrl = aBaseUrl+"person!";
+//    public static String aBaseUrl="http://172.28.214.3:8080/st/";
+    public  String baseUrl = aBaseUrl+"person!";
 
 	public int getIndex() {
 		return index;
