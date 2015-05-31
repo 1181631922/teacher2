@@ -27,11 +27,27 @@
                 android:layout_weight="0">
 
                 <ImageButton
-                    android:id="@+id/advice_teacher_back"
+                    android:id="@+id/advice_rank_back"
                     android:layout_width="18dp"
                     android:layout_height="25dp"
                     android:background="#00000000"
                     android:src="@drawable/activity_back_selector" />
+
+                <FrameLayout
+                    android:id="@+id/frameLayo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="7dp"
+                    android:layout_weight="0">
+
+                    <ProgressBar
+                        android:id="@+id/course_rank_progress"
+                        android:layout_width="30dp"
+                        android:layout_gravity="right"
+                        android:layout_height="30dp"
+                        android:visibility="gone" />
+                </FrameLayout>
             </FrameLayout>
 
             <TextView
@@ -42,7 +58,7 @@
                 android:gravity="center_horizontal"
                 android:paddingBottom="7dp"
                 android:paddingTop="12dp"
-                android:text="教师留言"
+                android:text="查看得分"
                 android:textColor="#ffffff"
                 android:textSize="16sp" />
 
@@ -51,7 +67,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="7dp"
                 android:visibility="gone"
                 android:layout_weight="0">
 
@@ -97,12 +112,12 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="3dp"
                     android:gravity="center"
-                    android:text="学生姓名"
+                    android:text="名次"
                     android:textColor="#000000"
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/advice_teacher_name"
+                    android:id="@+id/advice_teacher_rank"
                     android:layout_width="fill_parent"
                     android:layout_height="40dp"
                     android:layout_marginLeft="20dp"
@@ -130,12 +145,12 @@
                     android:layout_height="40dp"
                     android:layout_marginLeft="20dp"
                     android:gravity="center"
-                    android:text="留言内容"
+                    android:text="总分"
                     android:textColor="#000000"
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/advice_teacher_evaluation"
+                    android:id="@+id/advice_teacher_score"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"

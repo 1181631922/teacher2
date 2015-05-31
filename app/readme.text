@@ -7,3 +7,9 @@
 192.168.253.2:8080/st/course!teacherFindCourseAndroid?number=teacher001
 6.未读留言
 192.168.253.2:8080/st/message!getUnreadMessageAndroid?number=
+7.查看已读留言
+192.168.253.2:8080/st/message!getReadedMessageAndroid?number=
+8,查看留言后发的字段
+192.168.253.2:8080/st/message!setMessageReadedAndroid?message_id
+9,查看得分
+192.168.253.2:8080/st/result!showResultAndroid?

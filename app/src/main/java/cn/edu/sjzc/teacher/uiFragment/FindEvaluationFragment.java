@@ -11,6 +11,8 @@ import android.widget.ImageView;
 
 import cn.edu.sjzc.teacher.R;
 import cn.edu.sjzc.teacher.uiActivity.EvealuationActivity;
+import cn.edu.sjzc.teacher.uiActivity.MyCourseActivity;
+import cn.edu.sjzc.teacher.uiActivity.MyRankActivity;
 import cn.edu.sjzc.teacher.uiActivity.MyRankingActivity;
 import cn.edu.sjzc.teacher.uiActivity.TeacherRankingActivity;
 
@@ -60,13 +62,12 @@ public class FindEvaluationFragment extends BaseFragment implements OnClickListe
 
         switch (v.getId()) {
             case R.id.eva_evaluation_but:
-                Intent it_evalua = new Intent(getActivity(), EvealuationActivity.class);
+                Intent it_evalua = new Intent(getActivity(), MyCourseActivity.class);
                 startActivity(it_evalua);
                 break;
             case R.id.eva_score_but:
 
-                Intent it_score = new Intent(getActivity(),
-                        MyRankingActivity.class);
+                Intent it_score = new Intent(getActivity(), MyRankActivity.class);
                 FindEvaluationFragment.this.startActivity(it_score);
 
                 break;

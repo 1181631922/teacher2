@@ -65,7 +65,8 @@ public class FindAdviceSonFragment extends BaseFragment {
     private ScheduleAdapter scheduleAdapter;
     private boolean isNet = false;
     private static int countCourse = 1;
-    private String FindTeacherUrl = aBaseUrl + "course!findTeacherAndroid.action";
+    private String FindTeacherUrl = aBaseUrl + "message!getUnreadMessageAndroid";
+    private String message_id;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -117,6 +118,7 @@ public class FindAdviceSonFragment extends BaseFragment {
                     JSONObject shceduleobj = coursearray.getJSONObject(i);
                     scheduleBean.setTitle(shceduleobj.getString("teacher_name"));
                     scheduleBean.setId(shceduleobj.getString("coursename"));
+
 
                     Map<String, Object> mapcourse = new HashMap<String, Object>();
                     mapcourse.put("mid", shceduleobj.getString("teacher_name"));
@@ -240,12 +242,13 @@ public class FindAdviceSonFragment extends BaseFragment {
                 for (int i = 0; i < coursearray.length(); i++) {
                     ScheduleBean scheduleBean = new ScheduleBean(courseid, title);
                     JSONObject shceduleobj = coursearray.getJSONObject(i);
-                    scheduleBean.setId(shceduleobj.getString("teacher_name"));
-                    scheduleBean.setTitle("去给教师留言");
+                    scheduleBean.setId(shceduleobj.getString("student_name"));
+                    scheduleBean.setTitle(shceduleobj.getString("message_time"));
 
                     Map<String, Object> mapteacher = new HashMap<String, Object>();
-                    mapteacher.put("teacher_id", shceduleobj.getString("teacher_id"));
-                    mapteacher.put("teacher_name", shceduleobj.getString("teacher_name"));
+                    mapteacher.put("student_name", shceduleobj.getString("student_name"));
+                    mapteacher.put("message", shceduleobj.getString("message"));
+                    mapteacher.put("message_id", shceduleobj.getString("message_id"));
                     myList.add(mapteacher);
                     scheduleBeanList.add(scheduleBean);
 
@@ -286,11 +289,31 @@ public class FindAdviceSonFragment extends BaseFragment {
             for (int i = 0; i <= position; i++) {
                 if (position == i) {
                     Map map = (Map) myList.get(i);
-                    intent.putExtra("teacher_id", (String) map.get("teacher_id"));
-                    intent.putExtra("teacher_name", (String) map.get("teacher_name"));
+                    intent.putExtra("student_name", (String) map.get("student_name"));
+                    intent.putExtra("message", (String) map.get("message"));
+                    message_id = (String) map.get("message_id");
+                    Log.d("---------mesgid---------",message_id);
+                    Thread setThread = new Thread(new SetTeacherThread());
+                    setThread.start();
                 }
             }
             startActivity(intent);
+        }
+    }
+
+    class SetTeacherThread implements Runnable {
+        @Override
+        public void run() {
+            setTeacherData();
+        }
+    }
+
+    private void setTeacherData() {
+        try {
+            String backMsg = PostUtil.postData(aBaseUrl + "message!setMessageReadedAndroid?message_id=" + message_id, null);
+            Log.d("---------mesgid---------",message_id);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
