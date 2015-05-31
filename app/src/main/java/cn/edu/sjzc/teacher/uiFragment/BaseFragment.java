@@ -8,7 +8,7 @@ import java.util.Date;
 public class BaseFragment extends ABaseFragment {
 
 	private int index;
-//    public static String aBaseUrl="http://172.28.214.3:8080/st/";
+    public static String aBaseUrl="http://192.168.253.2:8080/st/";
     public  String baseUrl = aBaseUrl+"person!";
 
 	public int getIndex() {

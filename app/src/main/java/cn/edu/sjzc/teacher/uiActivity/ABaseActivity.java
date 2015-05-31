@@ -8,7 +8,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class ABaseActivity extends Activity {
-    protected String aBaseUrl;
+//    protected String aBaseUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +21,7 @@ public class ABaseActivity extends Activity {
         try {
             InputStream inputStream = getAssets().open("fanyafeng.properties");
             properties.load(inputStream);
-            aBaseUrl = properties.getProperty("ServerUrl");
+//            aBaseUrl = properties.getProperty("ServerUrl");
         } catch (IOException e) {
             e.printStackTrace();
         }

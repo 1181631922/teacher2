@@ -57,7 +57,7 @@ public class PerPersonalInfoActivity extends BaseActivity implements OnClickList
             idNum = bundle.getString("idNum");
             address = bundle.getString("address");
             tel = bundle.getString("tel");
-            email = bundle.getString("emai");
+            email = bundle.getString("email");
             age = bundle.getInt("age");
             major = bundle.getString("major");
             per_user_sex.setText(sex);
@@ -80,8 +80,6 @@ public class PerPersonalInfoActivity extends BaseActivity implements OnClickList
     }
 
     private void loadData() {
-        HttpClient httpClient = new DefaultHttpClient();
-        HttpGet request;
         try {
             String PERSONALINFOURL = personInfomationUrl + number;
             String backMsg = PostUtil.postData(PERSONALINFOURL, null);
@@ -94,7 +92,7 @@ public class PerPersonalInfoActivity extends BaseActivity implements OnClickList
                 bundle.putString("idNum", jsonObject.getString("idNum"));
                 bundle.putString("address", jsonObject.getString("address"));
                 bundle.putString("tel", jsonObject.getString("tel"));
-                bundle.putString("email", jsonObject.getString("e-mail"));
+                bundle.putString("email", jsonObject.getString("email"));
                 bundle.putInt("age", jsonObject.getInt("age"));
                 bundle.putString("major", jsonObject.getString("major"));
                 message.setData(bundle);
@@ -128,10 +126,10 @@ public class PerPersonalInfoActivity extends BaseActivity implements OnClickList
         this.per_user_address = (TextView) this.findViewById(R.id.per_user_address);
         this.personalinfo_progressbar = (ProgressBar) this.findViewById(R.id.personalinfo_progressbar);
         this.personalinfo_progressbar.setVisibility(View.VISIBLE);
-        ImageButton personalinfo_back = (ImageButton) this.findViewById(R.id.personalinfo_back);
-        personalinfo_back.setOnClickListener(this);
-        Button personalinfo_but = (Button) this.findViewById(R.id.personalinfo_but);
-        personalinfo_but.setOnClickListener(this);
+        this.personalinfo_back = (ImageButton) this.findViewById(R.id.personalinfo_back);
+        this.personalinfo_back.setOnClickListener(this);
+        this.personalinfo_but = (Button) this.findViewById(R.id.personalinfo_but);
+        this.personalinfo_but.setOnClickListener(this);
     }
 
     @Override
@@ -143,6 +141,9 @@ public class PerPersonalInfoActivity extends BaseActivity implements OnClickList
                 break;
             case R.id.personalinfo_but:
                 Intent it_personalinfo = new Intent(PerPersonalInfoActivity.this, PerChangeInfoActivity.class);
+                it_personalinfo.putExtra("email",email);
+                it_personalinfo.putExtra("tel",tel);
+                it_personalinfo.putExtra("address",address);
                 PerPersonalInfoActivity.this.startActivity(it_personalinfo);
                 break;
             default:

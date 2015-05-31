@@ -25,6 +25,7 @@ public class PostUtil {
             if (paramStr.length() == 0)
                 return "";
             paramStr = paramStr.substring(1, paramStr.length());
+            Log.d("--------paramStr----------",paramStr);
         }
         byte[] data = paramStr.getBytes();
         URL url = new URL(address);
@@ -32,7 +33,7 @@ public class PostUtil {
         //第一次一般是还未被赋值，若有值则将SessionId发给服务器
         if (null != SESSIONID) {//"JSESSIONID="+
             conn.setRequestProperty("Cookie", SESSIONID);
-            Log.d("------------------session--------------------",SESSIONID);
+            Log.d("------------------Cookie--------------------",SESSIONID);
         }
         conn.setConnectTimeout(10000);
         // 这是请求方式为POST

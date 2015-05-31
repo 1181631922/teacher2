@@ -29,10 +29,11 @@ public class BaseActivity extends ABaseActivity implements View.OnClickListener{
 
     public static final int REQUEST_TIMEOUT = 5 * 1000;// 设置请求超时10秒钟
     public static final int SO_TIMEOUT = 10 * 1000; // 设置等待数据超时时间10秒钟
-//    public  String aBaseUrl="http://172.28.214.3:8080/st/";
+    public  String aBaseUrl="http://192.168.253.2:8080/st/";
     public  String baseUrl = aBaseUrl+"person!";
     public  String loginUrl = baseUrl+"loginAndroid";
-    public  String personInfomationUrl = baseUrl+"findPersonByNumber?number=";
+    public  String personInfomationUrl = baseUrl+"findPersonByNumberAndroid?number=";
+    public  String changePasswordUrl=baseUrl+"updatePasswordAndroid.action";
 
     // 初始化HttpClient，并设置超时
     public static HttpClient getHttpClient() {

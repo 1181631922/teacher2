@@ -72,7 +72,7 @@ public class FindStudentFragment extends BaseFragment implements OnTouchingLette
     private Button find_teacher;
     private PullToRefreshLayout ptrl;
     private String number, office, email, teacher_name, tel, teacher_id;
-    private String FindTeacherUrl = aBaseUrl + "course!findTeacherAndroid.action";
+    private String FindTeacherUrl = aBaseUrl + "person!showStudentAndroid.action";
     private boolean isNet = false;
     private ProgressBar findteacher_progressbar;
 
@@ -126,16 +126,16 @@ public class FindStudentFragment extends BaseFragment implements OnTouchingLette
                 for (int i = 0; i < coursearray.length(); i++) {
                     StudentUserBean studentUserBean = new StudentUserBean(teacher_name, tel, null);
                     JSONObject studentuserobj = coursearray.getJSONObject(i);
-                    studentUserBean.setUserName(studentuserobj.getString("teacher_name"));
+                    studentUserBean.setUserName(studentuserobj.getString("student_name"));
                     studentUserBean.setPhoneNum(studentuserobj.getString("tel"));
-                    studentUserBean.setPy(studentuserobj.getString("teacher_name"));
+                    studentUserBean.setPy(studentuserobj.getString("student_name"));
 
                     Map<String, Object> mapcourse = new HashMap<String, Object>();
-                    mapcourse.put("teacher_name", studentuserobj.getString("teacher_name"));
+                    mapcourse.put("student_name", studentuserobj.getString("student_name"));
                     mapcourse.put("tel", studentuserobj.getString("tel"));
                     mapcourse.put("office", studentuserobj.getString("office"));
                     mapcourse.put("email", studentuserobj.getString("email"));
-                    mapcourse.put("teacher_id", studentuserobj.getString("teacher_id"));
+                    mapcourse.put("student_id", studentuserobj.getString("student_id"));
                     studentList.add(mapcourse);
                     studentUserBeans.add(studentUserBean);
 
@@ -353,11 +353,11 @@ public class FindStudentFragment extends BaseFragment implements OnTouchingLette
             for (int i = 0; i <= position; i++) {
                 if (position == i) {
                     Map map = (Map) studentList.get(i);
-                    it_student_info.putExtra("teacher_name", (String) map.get("teacher_name"));
+                    it_student_info.putExtra("student_name", (String) map.get("student_name"));
                     it_student_info.putExtra("tel", (String) map.get("tel"));
                     it_student_info.putExtra("office", (String) map.get("office"));
                     it_student_info.putExtra("email", (String) map.get("email"));
-                    it_student_info.putExtra("teacher_id", (String) map.get("teacher_id"));
+                    it_student_info.putExtra("student_id", (String) map.get("student_id"));
                 }
             }
             startActivity(it_student_info);
