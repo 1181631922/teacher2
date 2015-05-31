@@ -21,9 +21,9 @@ public class AdviceCourseActivity extends BaseActivity {
     private RadioGroup radiogroup_one;
     private RadioButton advice_onegroup, advice_twogroup, advice_threegroup, advice_fourgroup, advice_fivegroup;
     private LinearLayout layout_one, layout_two;
-    private String teacher_name, coursename, teacher_id, courseId;
+    private String teacher_name, coursename, score, courseId;
     private ImageButton advice_course_back;
-    private TextView advice_course_name, advice_course_evaluation;
+    private TextView advice_course_name, advice_course_evaluation, advice_course_score;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,37 +37,21 @@ public class AdviceCourseActivity extends BaseActivity {
         Intent intent = this.getIntent();
         teacher_name = intent.getStringExtra("teacher_name");
         coursename = intent.getStringExtra("coursename");
-        teacher_id = intent.getStringExtra("teacher_id");
-        courseId = intent.getStringExtra("courseId");
+        score = intent.getStringExtra("score");
 
         advice_course_name = (TextView) findViewById(R.id.advice_course_name);
-        advice_course_name.setText(teacher_name);
         advice_course_evaluation = (TextView) findViewById(R.id.advice_course_evaluation);
-        advice_course_evaluation.setText(coursename);
+        advice_course_score = (TextView) findViewById(R.id.advice_course_score);
         advice_course_back = (ImageButton) findViewById(R.id.advice_course_back);
         advice_course_back.setOnClickListener(this);
-        layout_one = (LinearLayout) findViewById(R.id.layout_one);
-        layout_two = (LinearLayout) findViewById(R.id.layout_two);
-        radiogroup_one = (RadioGroup) findViewById(R.id.radiogroup_one);
-        button1 = (Button) findViewById(R.id.button1);
     }
 
     private void initData() {
-        addListenerRadioGroup1();
+        advice_course_name.setText(teacher_name);
+        advice_course_evaluation.setText(coursename);
+        advice_course_score.setText(score);
     }
 
-    private void addListenerRadioGroup1() {
-        button1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int selected = radiogroup_one.getCheckedRadioButtonId();
-                advice_onegroup = (RadioButton) findViewById(selected);
-                layout_one.setVisibility(View.GONE);
-                layout_two.setVisibility(View.VISIBLE);
-                Toast.makeText(AdviceCourseActivity.this, advice_onegroup.getText(), Toast.LENGTH_LONG).show();
-            }
-        });
-    }
 
     @Override
     public void onClick(View v) {

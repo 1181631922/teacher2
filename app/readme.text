@@ -2,3 +2,8 @@
 2.四月十二号零点29解决笔记本出现的bug，因为版本控制问题须在公司电脑再次提交
 3.有的点击加了声音，有的没有加，后期加上点击声音，现在能用Android Studio完整的打出包来，
 4.将微信分享图片放入登录的网络检查Activity中的生命周期。
+
+5，查看所教课程
+192.168.253.2:8080/st/course!teacherFindCourseAndroid?number=teacher001
+6.未读留言
+192.168.253.2:8080/st/message!getUnreadMessageAndroid?number=

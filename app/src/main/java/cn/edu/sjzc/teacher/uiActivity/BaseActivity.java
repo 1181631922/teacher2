@@ -8,7 +8,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 
@@ -34,6 +36,12 @@ public class BaseActivity extends ABaseActivity implements View.OnClickListener{
     public  String loginUrl = baseUrl+"loginAndroid";
     public  String personInfomationUrl = baseUrl+"findPersonByNumberAndroid?number=";
     public  String changePasswordUrl=baseUrl+"updatePasswordAndroid.action";
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+    }
 
     // 初始化HttpClient，并设置超时
     public static HttpClient getHttpClient() {

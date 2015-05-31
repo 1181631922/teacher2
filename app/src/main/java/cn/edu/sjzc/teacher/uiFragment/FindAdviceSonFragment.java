@@ -57,7 +57,7 @@ public class FindAdviceSonFragment extends BaseFragment {
     private List<ScheduleBean> scheduleBeanList = new ArrayList<ScheduleBean>();
     private String adviceid, advicetitle;
     private List<Map<String, Object>> myList = new ArrayList<Map<String, Object>>();
-    private String COURSE_URL = aBaseUrl + "course!findCourseAndroid";
+    private String COURSE_URL = aBaseUrl + "course!teacherFindCourseAndroid";
     private String number, courseid, title;
     private Button start;
     private LinearLayout advice_list;
@@ -121,8 +121,7 @@ public class FindAdviceSonFragment extends BaseFragment {
                     Map<String, Object> mapcourse = new HashMap<String, Object>();
                     mapcourse.put("mid", shceduleobj.getString("teacher_name"));
                     mapcourse.put("mtitle", shceduleobj.getString("coursename"));
-                    mapcourse.put("teacher_id", shceduleobj.getString("teacher_id"));
-                    mapcourse.put("courseId", shceduleobj.getString("courseId"));
+                    mapcourse.put("score", shceduleobj.getString("score"));
                     myList.add(mapcourse);
                     scheduleBeanList.add(scheduleBean);
                 }
@@ -213,8 +212,7 @@ public class FindAdviceSonFragment extends BaseFragment {
                     Map map = (Map) myList.get(i);
                     intent.putExtra("teacher_name", (String) map.get("mid"));
                     intent.putExtra("coursename", (String) map.get("mtitle"));
-                    intent.putExtra("teacher_id", (String) map.get("teacher_id"));
-                    intent.putExtra("courseId", (String) map.get("courseId"));
+                    intent.putExtra("score", (String) map.get("score"));
                 }
             }
             startActivity(intent);

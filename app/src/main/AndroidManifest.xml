@@ -154,6 +154,10 @@
             android:name="cn.edu.sjzc.teacher.uiActivity.EvealuationActivity"
             android:label="@string/title_activity_evealuation"
             android:screenOrientation="portrait" />
+        <activity
+            android:name="cn.edu.sjzc.teacher.uiActivity.AdviceCourseActivity"
+            android:label="@string/title_activity_evealuation"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
