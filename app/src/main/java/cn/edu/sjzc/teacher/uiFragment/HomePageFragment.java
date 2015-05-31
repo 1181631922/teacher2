@@ -33,6 +33,7 @@ import java.util.concurrent.TimeUnit;
 import cn.edu.sjzc.teacher.R;
 import cn.edu.sjzc.teacher.uiActivity.HomeInfoActivity;
 import cn.edu.sjzc.teacher.uiActivity.LoginActivity;
+import cn.edu.sjzc.teacher.uiActivity.MyNewCourseActivity;
 import cn.edu.sjzc.teacher.uiActivity.RetroactionActivity;
 
 public class HomePageFragment extends BaseFragment {
@@ -363,7 +364,7 @@ public class HomePageFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                Intent it = new Intent(getActivity(), HomeInfoActivity.class);
+                Intent it = new Intent(getActivity(), MyNewCourseActivity.class);
                 HomePageFragment.this.startActivity(it);
             }
         });

@@ -171,6 +171,10 @@
             android:name=".uiActivity.MyRankActivity"
             android:label="@string/title_activity_my_rank"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".uiActivity.MyNewCourseActivity"
+            android:label="@string/title_activity_my_rank"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
