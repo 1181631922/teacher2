@@ -27,7 +27,7 @@
                 android:gravity="center_horizontal"
                 android:paddingBottom="10dp"
                 android:paddingTop="10dp"
-                android:text="查找教师"
+                android:text="查找学生"
                 android:textColor="#ffffff"
                 android:textSize="14sp" />
 

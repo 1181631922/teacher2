@@ -125,6 +125,7 @@
                 android:id="@+id/login_cb_savepwd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:layout_alignBaseline="@+id/login_btn_login"
                 android:button="@drawable/btn_check"
                 android:paddingLeft="40.0px"
@@ -145,12 +146,12 @@
                 android:id="@+id/login_btn_login"
                 android:layout_width="90.0dp"
                 android:layout_height="35dp"
-                android:layout_below="@+id/textview02"
-                android:layout_marginTop="7.0px"
-                android:layout_toRightOf="@+id/login_cb_savepwd"
-                android:layout_marginLeft="100dp"
+                android:layout_gravity="right"
                 android:background="@drawable/login_selector"
-                android:text="@string/login" />
+                android:text="@string/login"
+                android:layout_below="@+id/login_edit_pwd"
+                android:layout_alignRight="@+id/login_edit_pwd"
+                android:layout_alignEnd="@+id/login_edit_pwd" />
 
 
         </RelativeLayout>

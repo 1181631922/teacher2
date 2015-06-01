@@ -92,7 +92,7 @@
                     android:layout_marginTop="1dp"
                     android:layout_toRightOf="@id/user_name"
                     android:background="@android:color/transparent"
-                    android:hint="100"
+                    android:hint="请输入原密码"
                     android:textSize="16sp" />
             </RelativeLayout>
 
