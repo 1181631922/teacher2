@@ -174,7 +174,7 @@
                     android:layout_height="40dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="1dp"
-                    android:layout_toRightOf="@id/us_email"
+                    android:layout_toRightOf="@id/us_score"
                     android:background="@android:color/transparent"
                     android:gravity="center"
                     android:textSize="16sp" />
