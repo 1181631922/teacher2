@@ -40,7 +40,7 @@ public class MainTabActivity extends FragmentActivity implements View.OnClickLis
     private int mImageViewArray[] = {R.drawable.tab_home_btn, R.drawable.tab_message_btn, R.drawable.tab_selfinfo_btn,
             R.drawable.tab_square_btn, R.drawable.tab_more_btn};
 
-    private String mTextviewArray[] = {"首页", "查看信息", "查看评价", "查找学生", "个人信息"};
+    private String mTextviewArray[] = {"首页", "查看信息", "查看评价", "查找学生", "个人中心"};
     public static MainTabActivity instance = null;
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
